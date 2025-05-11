@@ -66,7 +66,7 @@ class tlController extends Controller
 
     }
 
-    public function land_form(Request $req)
+    public function form_lands(Request $req)
     {
         $req->validate([
             // Basic Details
@@ -108,8 +108,8 @@ class tlController extends Controller
 
         
             // Land Development Activity
-            'sf_no' => 'required',
-            'land_benefit' => 'required',
+            'sf_number' => 'required',
+            'land_to_benefit' => 'required',
             'soil_type' => 'required',
             'inspection' => 'required',
             'approved_by' => 'required',
@@ -136,12 +136,12 @@ class tlController extends Controller
         $form->user_id = $req->user_id;
         $form->form_type = 'land';
         $form->farmer_name = $req->farmerName;
-        $form->mobile_number = $req->mobileNumber;
+        $form->mobile = $req->mobileNumber;
         $form->gender = $req->gender;
-        $form->father_spouse = $req->fatherSpouse;
-        $form->household_members = implode(',', $req->hh_members);//[]
-        $form->identity_card_type = $req->identityCard;
-        $form->identity_card_number = $req->idCardNumber;
+        $form->spouse = $req->fatherSpouse;
+        $form->h_members = implode(',', $req->hh_members);//[]
+        $form->id_type = $req->identityCard;
+        $form->id_number = $req->idCardNumber;
         $form->hamlet = $req->hamlet;
         $form->panchayat = $req->panchayat;
         $form->block = $req->block;
@@ -154,7 +154,7 @@ class tlController extends Controller
         $form->drinking_water  = implode(',', $req->drinkingWater);
         $form->potability = implode(',', $req->potability);
         $form->domestic_water =  implode(',', $req->domesticWater);
-        $form->toilet_availability = $req->toilet;
+        $form->toilet_avail = $req->toilet;
         $form->toilet_cond = $req->toiletWorking;
         $form->household_education = $req->education;
         $form->age = $req->age;
@@ -169,7 +169,7 @@ class tlController extends Controller
 // Get the auto-generated form_id
     $form_id = $form->id;
 
-    // Insert into `land_form` table
+    // Insert into `form_lands` table
     $landForm = new LandForm();
     $landForm->form_id = $form_id; // Foreign key reference
     $landForm->ownership = $req->landOwnership;
@@ -184,19 +184,19 @@ class tlController extends Controller
 
 
 
-    $landForm->sf_no = $req->sf_no;
+    $landForm->sf_number = $req->sf_number;
     $landForm->soil_type = $req->soil_type;
-    $landForm->land_benefit = $req->land_benefit;
+    $landForm->land_to_benefit = $req->land_to_benefit;
     $landForm->field_insp = $req->inspection;
     $landForm->site_app = $req->approved_by;
     $landForm->date_of_ins = $req->inspection_date;
     $landForm->date_of_app = $req->approval_date;
     $landForm->type_of_work = implode(',', $req->workType); // Convert array to string
-    $landForm->area_benefit = $req->areaBenefited;
-    $landForm->other_works = $req->otherWorks;
-    $landForm->pradan_cont = $req->pradanContribution;
-    $landForm->farmer_cont = $req->farmerContribution;
-    $landForm->total_amount = $req->estimateAmount;
+    $landForm->area_benefited = $req->areaBenefited;
+    $landForm->any_other_works = $req->otherWorks;
+    $landForm->p_contribution = $req->pradanContribution;
+    $landForm->f_contribution = $req->farmerContribution;
+    $landForm->total_est = $req->estimateAmount;
     $landForm->save();
 
         // Insert into `bank_details` table
@@ -292,8 +292,8 @@ class tlController extends Controller
  
          
              // Pond Development Activity
-             'sf_no' => 'required',
-             'land_benefit' => 'required',
+             'sf_number' => 'required',
+             'land_to_benefit' => 'required',
              'soil_type' => 'required',
              'inspection' => 'required',
              'approved_by' => 'required',
@@ -325,12 +325,12 @@ class tlController extends Controller
         $form->user_id = $req->user_id;
         $form->form_type = 'pond';
         $form->farmer_name = $req->farmerName;
-        $form->mobile_number = $req->mobileNumber;
+        $form->mobile = $req->mobileNumber;
         $form->gender = $req->gender;
-        $form->father_spouse = $req->fatherSpouse;
-        $form->household_members = implode(',', $req->hh_members);//[]
-        $form->identity_card_type = $req->identityCard;
-        $form->identity_card_number = $req->idCardNumber;
+        $form->spouse = $req->fatherSpouse;
+        $form->h_members = implode(',', $req->hh_members);//[]
+        $form->id_type = $req->identityCard;
+        $form->id_number = $req->idCardNumber;
         $form->hamlet = $req->hamlet;
         $form->panchayat = $req->panchayat;
         $form->block = $req->block;
@@ -343,7 +343,7 @@ class tlController extends Controller
         $form->drinking_water  = implode(',', $req->drinkingWater);
         $form->potability = implode(',', $req->potability);
         $form->domestic_water =  implode(',', $req->domesticWater);
-        $form->toilet_availability = $req->toilet;
+        $form->toilet_avail = $req->toilet;
         $form->toilet_cond = $req->toiletWorking;
         $form->age = $req->age;
         $form->district = $req->district;
@@ -359,10 +359,10 @@ class tlController extends Controller
 
     
 
- // Insert into `land_form` table
+ // Insert into `form_lands` table
  $pondForm = new PondForm();
  $pondForm->form_id = $form_id; // Foreign key reference
- $pondForm->land_owner = $req->landOwnership;
+ $pondForm->ownership = $req->landOwnership;
  $pondForm->patta = $req->pattaNumber;
  $pondForm->total_area = $req->totalArea;
  $pondForm->revenue = $req->revenueVillage;
@@ -370,26 +370,26 @@ class tlController extends Controller
  $pondForm->irrigated_lands = $req->irrigatedLand;
  $pondForm->crop_season = $req->cropSeason;
  $pondForm->area_irrigated = $req->area_irrigated;
- $pondForm->area_benefitted = $req->areaBenefitted;
+ $pondForm->area_benefited = $req->areaBenefitted;
 
  $pondForm->livestocks = implode(',', $req->livestock);
 
 
 
- $pondForm->sf_no = $req->sf_no;
+ $pondForm->sf_number = $req->sf_number;
  $pondForm->soil_type = $req->soil_type;
- $pondForm->land_serve = $req->land_benefit;
+ $pondForm->land_serve = $req->land_to_benefit;
  $pondForm->field_insp = $req->inspection;
- $pondForm->site_appr = $req->approved_by;
- $pondForm->date_of_insp = $req->inspection_date;
- $pondForm->date_of_appr = $req->approval_date;
+ $pondForm->site_app = $req->approved_by;
+ $pondForm->date_of_ins = $req->inspection_date;
+ $pondForm->date_of_app = $req->approval_date;
  $pondForm->length = $req->length;
  $pondForm->breadth = $req->breadth;
  $pondForm->depth = $req->depth;
  $pondForm->volume = $req->volume;
- $pondForm->pradan_cont = $req->pradanContribution;
- $pondForm->farmer_cont = $req->farmerContribution;
- $pondForm->total = $req->estimateAmount;
+ $pondForm->p_contribution = $req->pradanContribution;
+ $pondForm->f_contribution = $req->farmerContribution;
+ $pondForm->total_est = $req->estimateAmount;
  $pondForm->save();
 
 
@@ -439,7 +439,7 @@ return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
 
     }
 
-    public function plant_form(Request $req)
+    public function plantation_details(Request $req)
     {
         $req->validate([
             // Basic Details
@@ -481,8 +481,8 @@ return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
 
         
             // Land Development Activity
-            'sf_no' => 'required',
-            'land_benefit' => 'required',
+            'sf_number' => 'required',
+            'land_to_benefit' => 'required',
             'soil_type' => 'required',
             'inspection' => 'required',
             'approved_by' => 'required',
@@ -495,7 +495,7 @@ return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
             'otherWorks' => 'required',
             'pradanContribution' => 'required',
             'farmerContribution' => 'required',
-            'plantation'=>'required',
+            'plantaions'=>'required',
         
             // Bank Details
             'account_holder' => 'required',
@@ -510,12 +510,12 @@ return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
         $form->user_id = $req->user_id;
         $form->form_type = 'plant';
         $form->farmer_name = $req->farmerName;
-        $form->mobile_number = $req->mobileNumber;
+        $form->mobile = $req->mobileNumber;
         $form->gender = $req->gender;
-        $form->father_spouse = $req->fatherSpouse;
-        $form->household_members = implode(',', $req->hh_members);//[]
-        $form->identity_card_type = $req->identityCard;
-        $form->identity_card_number = $req->idCardNumber;
+        $form->spouse = $req->fatherSpouse;
+        $form->h_members = implode(',', $req->hh_members);//[]
+        $form->id_type = $req->identityCard;
+        $form->id_number = $req->idCardNumber;
         $form->hamlet = $req->hamlet;
         $form->panchayat = $req->panchayat;
         $form->block = $req->block;
@@ -534,7 +534,7 @@ return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
         $form->lat = $req->lat;
         $form->lon = $req->lon;
         $form->domestic_water =  implode(',', $req->domesticWater);
-        $form->toilet_availability = $req->toilet;
+        $form->toilet_avail = $req->toilet;
         $form->toilet_cond = $req->toiletWorking;
         $form->household_education = $req->education;
         $form->status = 4;
@@ -554,24 +554,24 @@ return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
     $landForm->irrigated_lands = $req->irrigatedLand;
     $landForm->crop_season = $req->cropSeason;
     $landForm->livestocks = implode(',', $req->livestock);
-    $landForm->plantation = implode(',', $req->plantation);
+    $landForm->plantaions = implode(',', $req->plantaions);
 
 
 
 
-    $landForm->sf_no = $req->sf_no;
+    $landForm->sf_number = $req->sf_number;
     $landForm->soil_type = $req->soil_type;
-    $landForm->land_benefit = $req->land_benefit;
+    $landForm->land_to_benefit = $req->land_to_benefit;
     $landForm->field_insp = $req->inspection;
     $landForm->site_app = $req->approved_by;
     $landForm->date_of_ins = $req->inspection_date;
     $landForm->date_of_app = $req->approval_date;
     $landForm->type_of_work = implode(',', $req->workType); // Convert array to string
-    $landForm->area_benefit = $req->areaBenefited;
-    $landForm->other_works = $req->otherWorks;
-    $landForm->pradan_cont = $req->pradanContribution;
-    $landForm->farmer_cont = $req->farmerContribution;
-    $landForm->total_amount = $req->estimateAmount;
+    $landForm->area_benefited = $req->areaBenefited;
+    $landForm->any_other_works = $req->otherWorks;
+    $landForm->p_contribution = $req->pradanContribution;
+    $landForm->f_contribution = $req->farmerContribution;
+    $landForm->total_est = $req->estimateAmount;
     
     $landForm->save();
 

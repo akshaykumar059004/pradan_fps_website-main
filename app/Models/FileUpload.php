@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FileUpload extends Model
 {
-	protected $table = 'file_uploads';
+	protected $table = 'files';
 	public $timestamps = false;
 
 	protected $fillable = [

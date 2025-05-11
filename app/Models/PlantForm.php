@@ -22,20 +22,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $revenue
  * @property string $crop_season
  * @property string $livestocks
- * @property string $plantation
- * @property string $sf_no
+ * @property string $plantaions
+ * @property string $sf_number
  * @property string $soil_type
- * @property string $land_benefit
+ * @property string $land_to_benefit
  * @property string $field_insp
  * @property string $site_app
  * @property string $date_of_ins
  * @property string $date_of_app
  * @property string $type_of_work
- * @property string $area_benefit
- * @property string $other_works
- * @property string $pradan_cont
- * @property string $farmer_cont
- * @property string $total_amount
+ * @property string $area_benefited_by_proposal
+ * @property string $any_other_works
+ * @property string $p_contribution
+ * @property string $f_contribution
+ * @property string $total_est
  * @property string $nos
  * @property string $price
  * @property string $other_exp
@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PlantForm extends Model
 {
-	protected $table = 'plant_form';
+	protected $table = 'plantation_details';
 	public $timestamps = false;
 
 	protected $casts = [
@@ -64,20 +64,20 @@ class PlantForm extends Model
 		'revenue',
 		'crop_season',
 		'livestocks',
-		'plantation',
-		'sf_no',
+		'plantaions',
+		'sf_number',
 		'soil_type',
-		'land_benefit',
+		'land_to_benefit',
 		'field_insp',
 		'site_app',
 		'date_of_ins',
 		'date_of_app',
 		'type_of_work',
-		'area_benefit',
-		'other_works',
-		'pradan_cont',
-		'farmer_cont',
-		'total_amount',
+		'area_benefited_by_proposal',
+		'any_other_works',
+		'p_contribution',
+		'f_contribution',
+		'total_est',
 		'nos',
 		'price',
 		'other_exp',

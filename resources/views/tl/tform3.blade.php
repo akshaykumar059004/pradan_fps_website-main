@@ -636,16 +636,16 @@
                                             <div class="container p-3">
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
-                                                        <label for="sf_no" class="form-label">S.F. No. of the land to be
+                                                        <label for="sf_number" class="form-label">S.F. No. of the land to be
                                                             developed <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="sf_no" name="sf_no"
+                                                        <input type="text" class="form-control" id="sf_number" name="sf_number"
                                                             required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label for="land_benefit" class="form-label">Land to benefit
+                                                        <label for="land_to_benefit" class="form-label">Land to benefit
                                                             (ha) <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="land_benefit"
-                                                            name="land_benefit" required>
+                                                        <input type="text" class="form-control" id="land_to_benefit"
+                                                            name="land_to_benefit" required>
                                                     </div>
                                                 </div>
 
@@ -756,24 +756,24 @@
                                                         <label class="form-label">Type of Plantations proposed</label>
                                                         <div class="ms-4">
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" id="plantationMango" name="plantation[]" value="Mango">
+                                                                <input class="form-check-input" type="checkbox" id="plantationMango" name="plantaions[]" value="Mango">
                                                                 <label class="form-check-label" for="plantationMango">Mango</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" id="plantationGuava" name="plantation[]" value="Guava">
+                                                                <input class="form-check-input" type="checkbox" id="plantationGuava" name="plantaions[]" value="Guava">
                                                                 <label class="form-check-label" for="plantationGuava">Guava</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" id="plantationLemon" name="plantation[]" value="Lemon">
+                                                                <input class="form-check-input" type="checkbox" id="plantationLemon" name="plantaions[]" value="Lemon">
                                                                 <label class="form-check-label" for="plantationLemon">Lemon</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" id="plantationMoringa" name="plantation[]" value="Moringa">
+                                                                <input class="form-check-input" type="checkbox" id="plantationMoringa" name="plantaions[]" value="Moringa">
                                                                 <label class="form-check-label" for="plantationMoringa">Moringa</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <label class="form-check-label" for="plantationOther">Other</label>
-                                                                <input type="text" class="form-control d-inline-block ms-2" style="width: 200px;" name="plantation[]" placeholder="Specify if other">
+                                                                <input type="text" class="form-control d-inline-block ms-2" style="width: 200px;" name="plantaions[]" placeholder="Specify if other">
                                                             </div>
                                                         </div>
                                                     </div>

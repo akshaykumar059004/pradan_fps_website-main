@@ -624,16 +624,16 @@
                                             <div class="container p-3">
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
-                                                        <label for="sf_no" class="form-label">S.F. No. of the land to be
+                                                        <label for="sf_number" class="form-label">S.F. No. of the land to be
                                                             developed <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="sf_no" name="sf_no"
+                                                        <input type="text" class="form-control" id="sf_number" name="sf_number"
                                                             required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label for="land_benefit" class="form-label">Land to benefit
+                                                        <label for="land_to_benefit" class="form-label">Land to benefit
                                                             (ha) <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="land_benefit"
-                                                            name="land_benefit" required>
+                                                        <input type="text" class="form-control" id="land_to_benefit"
+                                                            name="land_to_benefit" required>
                                                     </div>
                                                 </div>
 

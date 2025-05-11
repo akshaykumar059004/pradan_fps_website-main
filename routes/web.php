@@ -46,11 +46,11 @@ Route::get('/form3',function(){
     return view('assoc/form3');
 })->name('form3');
 
-Route::post('/form_land',[mainController::class,"land_form"]);
+Route::post('/form_land',[mainController::class,"form_lands"]);
 
 Route::post('/form_pond',[mainController::class,"pond_form"]);
 
-Route::post('/form_plant',[mainController::class,"plant_form"]);
+Route::post('/form_plant',[mainController::class,"plantation_details"]);
 
 
 Route::get('/application',[mainController::class,'fetch_appl'])->name('application');
@@ -114,11 +114,11 @@ Route::get('/get-remarks/{id}', [CoorController::class, 'getRemarks']);
 
 Route::post('/coor_appr1/{form_id}',[coorController::class,"coor_appr"]);
 
-Route::post('/cform_land',[coorController::class,"land_form"]);
+Route::post('/cform_land',[coorController::class,"form_lands"]);
 
 Route::post('/cform_pond',[coorController::class,"pond_form"]);
 
-Route::post('/cform_plant',[coorController::class,"plant_form"]);
+Route::post('/cform_plant',[coorController::class,"plantation_details"]);
 
 Route::get('/cform1',function(){
     return view('coor/cform1');
@@ -162,11 +162,11 @@ Route::get('/ldash', [tlController::class, 'tlDashboard'])->name('ldash');
 
 Route::get('/tl',[tlController::class,'fetch_appl_tl'])->name('tl');
 
-Route::post('/tform_land',[tlController::class,"land_form"]);
+Route::post('/tform_land',[tlController::class,"form_lands"]);
 
 Route::post('/tform_pond',[tlController::class,"pond_form"]);
 
-Route::post('/tform_plant',[tlController::class,"plant_form"]);
+Route::post('/tform_plant',[tlController::class,"plantation_details"]);
 
 Route::get('/tform1',function(){
     return view('tl/tform1');
