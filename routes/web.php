@@ -108,6 +108,7 @@ Route::get('/cdash', [coorController::class, 'coorDashboard'])->name('cdash');
 Route::get('/cappl',[coorController::class,'fetch_appl_coor1'])->name('cappl');
 
 
+
 Route::post('/coor/rem',[coorController::class,'coor_rem']);
 
 Route::get('/get-remarks/{id}', [CoorController::class, 'getRemarks']);
@@ -143,7 +144,11 @@ Route::post('/submit/coor/pf_land',[coorController::class,'submit_pf_land']);
 Route::post('/submit/coor/pf_pond',[coorController::class,'submit_pf_pond']);
 Route::post('/submit/coor/pf_plant',[coorController::class,'submit_pf_plant']);
 
-
+Route::get('/coor_mem',[coorController::class,'fetch_coor_mem'])->name('coor_mem');
+Route::delete('/tl/delete-user/{id}', [tlController::class, 'deleteUser']);
+Route::post('/tl/store-user', [tlController::class, 'storeUser'])->name('tl.store_user');
+Route::get('/tl/get_user/{id}', [tlController::class, 'get_user']);
+Route::post('/tl/update_user', [tlController::class, 'update_user']);
 
 
 

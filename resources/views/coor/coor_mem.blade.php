@@ -287,7 +287,7 @@
                         </a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tl_mem') }}">
+                        <a class="nav-link" href="{{ route('coor_mem') }}">
                             <i class="fas fa-users-cog me-3"></i>
                             <span class="menu-title">Manage Members</span>
                         </a>

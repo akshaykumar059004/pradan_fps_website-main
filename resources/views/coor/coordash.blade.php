@@ -109,7 +109,7 @@
                         </a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tl_mem') }}">
+                        <a class="nav-link" href="{{ route('coor_mem') }}">
                             <i class="fas fa-users-cog me-3"></i>
                             <span class="menu-title">Manage Members</span>
                         </a>
@@ -174,6 +174,49 @@
                         </div>
 
 
+                 <div class="col-md-6 grid-margin transparent">
+                            <div class="row">
+                                <div class="col-md-6 mb-4 stretch-card transparent">
+                                    <div class="card card-tale">
+                                        <div class="card-body">
+                                            <p class="mb-4">Applications Arrived</p>
+                                            <p class="fs-30 mb-2 ">{{$totalSubmitted}}</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
+                                        <div class="card-body">
+                                            <p class="mb-4">Applications Approved</p>
+                                            <p class="fs-30 mb-2">{{$approved}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                                    <div class="card card-light-blue">
+                                        <div class="card-body">
+                                            <p class="mb-4">Requested For Change</p>
+                                            <p class="fs-30 mb-2">{{$changeupdate}}</p>
+                                            <p>
+                                            <p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 stretch-card transparent">
+                                    <div class="card card-light-danger">
+                                        <div class="card-body">
+                                            <p class="mb-4">Application Completed</p>
+                                            <p class="fs-30 mb-2">{{$completed}}</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                         
 
