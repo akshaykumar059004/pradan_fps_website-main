@@ -1693,9 +1693,9 @@
                         $("#f_spouse").text(response.data.spouse);
                         $("#f_mobile").text(response.data.mobile);
                         $("#f_gender").text(response.data.gender);
-                        $("#f_card").text(response.data.identity_card_type);
-                        $("#f_member").text(response.data.household_members);
-                        $("#f_number").text(response.data.identity_card_number);
+                        $("#f_card").text(response.data.id_type);
+                        $("#f_member").text(response.data.h_members);
+                        $("#f_number").text(response.data.id_number);
                         $("#f_hamlet").text(response.data.hamlet);
                         $("#f_panchayat").text(response.data.panchayat);
                         $("#f_block").text(response.data.block);
