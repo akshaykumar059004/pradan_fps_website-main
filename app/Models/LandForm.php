@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LandForm extends Model
 {
-	protected $table = 'land_form';
+	protected $table = 'form_lands';
 	public $timestamps = false;
 
 	protected $casts = [

@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PlantForm extends Model
 {
-	protected $table = 'plant_form';
+	protected $table = 'plantation_details';
 	public $timestamps = false;
 
 	protected $casts = [

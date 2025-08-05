@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $farmer_name
  * @property string $age
  * @property string $district
- * @property string $mobile_number
+ * @property string $mobile
  * @property string $gender
  * @property string $taluk
  * @property string $firca
@@ -65,7 +65,7 @@ class Form extends Model
 		'farmer_name',
 		'age',
 		'district',
-		'mobile_number',
+		'mobile',
 		'gender',
 		'taluk',
 		'firca',
