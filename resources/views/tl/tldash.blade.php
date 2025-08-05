@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/js/select.dataTables.min.css') }}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="public/assets/images/favicon.png" />
 </head>
@@ -31,9 +31,9 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-                <a class="navbar-brand brand-logo me-5" href="{{route('vol')}}"><img src="{{ asset('assets/images/icons/Pradan-logo-title.png')}}" class="me-2"
+                <a class="navbar-brand brand-logo me-5" href="{{route('vol')}}"><img src="{{ asset('public/assets/images/icons/Pradan-logo-title.png')}}" class="me-2"
                         alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="{{route('vol')}}"><img src="{{asset('assets/images/icons/Pradan-logo-icon.png')}}"
+                <a class="navbar-brand brand-logo-mini" href="{{route('vol')}}"><img src="{{asset('public/assets/images/icons/Pradan-logo-icon.png')}}"
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -231,20 +231,20 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('public/assets/vendors/js/vendor.bundle.base.js') }}"></script>
 
-    <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('public/assets/vendors/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('public/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('public/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('public/assets/js/dataTables.select.min.js') }}"></script>
 
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/template.js') }}"></script>
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <script src="{{ asset('public/assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('public/assets/js/template.js') }}"></script>
+    <script src="{{ asset('public/assets/js/settings.js') }}"></script>
+    <script src="{{ asset('public/assets/js/todolist.js') }}"></script>
 
-    <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('public/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
 
 </body>
 
