@@ -338,7 +338,7 @@
                                                             <tr>
                                                                 <th>S.No</th>
                                                                 <th>Application Number</th>
-                                                                <th>Associate</th>
+                                                                <th>Submitted by</th>
                                                                 <th>Farmer Details</th>
                                                                 <th>Land Details</th>
                                                                 <th>Bank Details</th>
@@ -352,11 +352,11 @@
 
                                                             @foreach($form1 as $f)
                                                             @php
-                                                            $account = $f->bankDetail->first();
+                                                            $account = $f->bankDetail;
                                                             @endphp
                                                             <tr>
                                                                 <td>{{$s++}}</td>
-                                                                <td>#TN-00{{$f->id}}</td>
+                                                                <td>{{$f->id}}</td>
                                                                  <td><button type="button" class="btn btn-primary view-user-btn"
                                                                         value="{{$f->user_id}}"><i class="fas fa-eye"></i>View</button></td>
                                                                 <td><button type="button" class="btn btn-primary"
@@ -369,7 +369,15 @@
                                                                 </td>
                                                                 <td><button id="bank_detail" value="{{ $f->id }}" class="btn btn-link p-0"
                                                                         style="color: black; font-weight: bold; text-decoration: underline;">
-                                                                        <b>{{ str_repeat('X', strlen($account->account_number) - 4) . substr($account->account_number, -4) }}</b>
+                                                                        <b>
+                                                                            @php
+                                                                                $accountNumber = $account->account_number ?? '';
+                                                                                $length = strlen($accountNumber);
+                                                                                $visibleDigits = 4;
+                                                                                $maskLength = max(0, $length - $visibleDigits);
+                                                                            @endphp
+                                                                                {{ str_repeat('X', $maskLength) . substr($accountNumber, -$visibleDigits) }}
+                                                                        </b>
                                                                     </button>
                                                                 </td>
                                                                 <td>
@@ -469,6 +477,11 @@
                                                                     @case(9)
                                                                     <button class="btn btn-inverse-info btn-fw">PF Forwarded to Finance
                                                                         Manager</button>
+                                                                    @break
+
+                                                                    @case(11)
+                                                                    <button class="btn btn-inverse-info btn-fw"> Post Funding Verfication Done
+                                                                        </button>
                                                                     @break
 
                                                                     @default
@@ -1678,11 +1691,11 @@
                         console.log(response.data);
                         $("#f_name").text(response.data.farmer_name);
                         $("#f_spouse").text(response.data.father_spouse);
-                        $("#f_mobile").text(response.data.mobile_number);
+                        $("#f_mobile").text(response.data.mobile);
                         $("#f_gender").text(response.data.gender);
-                        $("#f_card").text(response.data.identity_card_type);
+                        $("#f_card").text(response.data.id_type);
                         $("#f_member").text(response.data.household_members);
-                        $("#f_number").text(response.data.identity_card_number);
+                        $("#f_number").text(response.data.id_number);
                         $("#f_hamlet").text(response.data.hamlet);
                         $("#f_panchayat").text(response.data.panchayat);
                         $("#f_block").text(response.data.block);
@@ -1694,7 +1707,7 @@
                         $("#f_drinking_water").text(response.data.drinking_water);
                         $("#f_potability").text(response.data.potability);
                         $("#f_domestic_water").text(response.data.domestic_water);
-                        $("#f_toilet_availability").text(response.data.toilet_availability);
+                        $("#f_toilet_availability").text(response.data.toilet_avail);
                         $("#f_toilet_condition").text(response.data.toilet_cond);
                         $("#f_house_owner").text(response.data.house_owner);
                         $("#f_household_education").text(response.data.household_education);

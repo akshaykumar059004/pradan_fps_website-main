@@ -45,7 +45,7 @@
 
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                            <img src="assets/images/faces/face15.jpg" alt="profile" />
+                            <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="profile" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -96,14 +96,14 @@
 
                     <!-- Coordinator Link -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('coor') }}">
+                        <a class="nav-link" href="{{ route('tl') }}">
                             <i class="mdi mdi-check"></i>&nbsp;
                             <span class="menu-title ms-3">Approvals</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cappl') }}">
+                        <a class="nav-link" href="{{ route('tl1') }}">
                             <i class="icon-columns menu-icon"></i>
                             <span class="menu-title">Applications</span>
                         </a>
@@ -120,7 +120,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Welcome {{ session('name') }} </h3>
-                                    <h6 class="font-weight-normal mb-0">Volunteer #{{ session('user_id')}}</h6>
+                                    <h6 class="font-weight-normal mb-0">You are logged in as Team Leader</h6>
                                 </div>
                                 <div class="col-12 col-xl-4">
                                     <div class="justify-content-end d-flex">
@@ -144,7 +144,7 @@
                                     <div class="col-md-4 d-flex align-items-center">
                                         <div class="card shadow card-tale text-center rounded-circle">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                                <img src="assets/images/faces/face15.jpg" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 140px; height: 140px; object-fit: cover;">
+                                                <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 140px; height: 140px; object-fit: cover;">
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                                 <h5 class="card-title text-dark">User Details</h5>
                                                 <p><strong>Name:</strong> {{ session('name') }}</p>
                                                 <p><strong>User ID:</strong> {{ session('user_id') }}</p>
-                                                <p><strong>DOB:</strong> Fetch from DB</p>
+                                                <p><strong>Date of Joining:</strong> {{session('payload')}}</p>
                                                 <p><strong>Email:</strong> {{ session('email') }}</p>
                                                 <p><strong>Phone:</strong> Fetch from DB</p>
                                             </div>
@@ -212,9 +212,12 @@
                             </div>
                         </div>
                     </div>
-
-
-
+                        <div>
+                            <a class="btn btn-warning d-flex align-items-center w-25" href="{{ route('tl_mem') }}">
+                                <i class="fas fa-users-cog me-2"></i>
+                                <span class="menu-title">Manage Members</span>
+                            </a>
+                        </div>
                 </div>
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">

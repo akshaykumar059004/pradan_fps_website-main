@@ -15,16 +15,16 @@ use App\Models\PlantForm;
 class tlController extends Controller
 {
     public function fetch_appl_tl(){
-        $form1 = Form::Where('form_type','land')->get();
-        $form2 = Form::Where('form_type','pond')->get();
-        $form3 = Form::Where('form_type','plant')->get();
+        $form1 = Form::Where('form_type',1)->get();
+        $form2 = Form::Where('form_type',2)->get();
+        $form3 = Form::Where('form_type',3)->get();
         if($form1||$form2||$form3){
             return view('tl/tl',compact('form1','form2','form3'));
         }
 
     }
-      public function tlDashboard()
-{
+    public function tlDashboard() {
+
     $userId = session()->get('user_id');
 
     $totalSubmitted = DB::table('forms')
@@ -32,31 +32,33 @@ class tlController extends Controller
         ->count();
 
     $approved = DB::table('forms')
-        ->where('user_id', $userId)
-        ->whereIn('status', [4])
+        ->whereIn('status', [4, 6])
         ->count();
 
     $changeupdate = DB::table('forms')
-        ->where('user_id', $userId)
-        ->whereIn('status', [2, 8])
+        ->whereIn('status', [2, 5])
         ->count();
 
     $completed = DB::table('forms')
-        ->where('user_id', $userId)
-        ->where('status', 11)
+        ->where('status', [11])
         ->count();
 
     return view('tl.tldash', compact('totalSubmitted', 'approved', 'changeupdate', 'completed'));
 }
 
-    public function fetch_appl_tl1(){
-        $form1 = Form::Where('form_type','land')->where('user_id',session('user_id'))->get();
-        $form2 = Form::Where('form_type','pond')->where('user_id',session('user_id'))->get();
-        $form3 = Form::Where('form_type','plant')->where('user_id',session('user_id'))->get();
-        if($form1||$form2||$form3){
-            return view('tl/tappl',compact('form1','form2','form3'));
-        }
-    }
+   public function fetch_appl_tl1(){
+    $forms = Form::where('user_id', session('user_id'))
+                 ->whereIn('form_type', [1, 2, 3])
+                 ->get()
+                 ->groupBy('form_type');
+
+    return view('tl/tappl', [
+        'form1' => $forms->get(1, collect()),
+        'form2' => $forms->get(2, collect()),
+        'form3' => $forms->get(3, collect()),
+    ]);
+}
+
         public function fetch_tl_mem(){
             $user = User::all();
           

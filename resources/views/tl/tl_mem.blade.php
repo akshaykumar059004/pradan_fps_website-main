@@ -286,12 +286,12 @@
                             <span class="menu-title">Applications</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('tl_mem') }}">
                             <i class="fas fa-users-cog me-3"></i>
                             <span class="menu-title">Manage Members</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
 
@@ -302,7 +302,7 @@
 
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
-                                <ul class="nav nav-tabs mb-3"
+                                <!-- <ul class="nav nav-tabs mb-3"
                                     style="border-radius: 10px 10px 10px 10px; overflow: hidden;" role="tablist">
 
                                     <li class="nav-item" role="presentation">
@@ -311,7 +311,7 @@
                                             <i class="fas fa-seedling"></i><b>&nbsp;Land Form</b>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <div class="tab-content tabcontent-border">
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMemberModal">Add Member</button>
 
@@ -321,7 +321,6 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title">Land Form</h4>
                                                 <div class="table-responsive">
                                                     <table id="land_table"
                                                         class="table table-bordered table-hover table-striped">
