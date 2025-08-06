@@ -21,30 +21,105 @@ class tlController extends Controller
         if($form1||$form2||$form3){
             return view('tl/tl',compact('form1','form2','form3'));
         }
-
     }
+
     public function tlDashboard() {
+        $userId = session()->get('user_id');
 
-    $userId = session()->get('user_id');
+        // Existing form statistics
+        $totalSubmitted = DB::table('forms')
+            ->whereIn('status', [1])
+            ->count();
 
-    $totalSubmitted = DB::table('forms')
-        ->whereIn('status', [1])
-        ->count();
+        $approved = DB::table('forms')
+            ->whereIn('status', [4, 6])
+            ->count();
 
-    $approved = DB::table('forms')
-        ->whereIn('status', [4, 6])
-        ->count();
+        $changeupdate = DB::table('forms')
+            ->whereIn('status', [2, 5])
+            ->count();
 
-    $changeupdate = DB::table('forms')
-        ->whereIn('status', [2, 5])
-        ->count();
+        $completed = DB::table('forms')
+            ->where('status', [11])
+            ->count();
 
-    $completed = DB::table('forms')
-        ->where('status', [11])
-        ->count();
+        // User role counts (using your role values)
+        $volunteerCount = DB::table('users')
+            ->where('role', 'vol')
+            ->count();
+            
+        $coordinatorCount = DB::table('users')
+            ->where('role', 'coor')
+            ->count();
+            
+        $financeManagerCount = DB::table('users')
+            ->where('role', 'fin')
+            ->count();
+            
+        $verifierCount = DB::table('users')
+            ->where('role', 'verifier')
+            ->count();
 
-    return view('tl.tldash', compact('totalSubmitted', 'approved', 'changeupdate', 'completed'));
+        // Additional stats (optional - add these columns to your users table if needed)
+        // $today = now()->startOfDay();
+        // $startOfMonth = now()->startOfMonth();
+        
+        // If you have last_login_at column
+        // $activeTodayCount = DB::table('users')
+        //     ->where('last_login_at', '>=', $today)
+        //     ->count();
+        
+        // New users this month
+        // $newThisMonthCount = DB::table('users')
+        //     ->where('created_at', '>=', $startOfMonth)
+        //     ->count();
+        
+        // If you have status column for pending approvals
+        // $pendingApprovalCount = DB::table('users')
+        //     ->where('status', 'pending')
+        //     ->count();
+        
+        // Alternative: if you use is_approved column instead
+        // $pendingApprovalCount = DB::table('users')
+        //     ->where('is_approved', false)
+        //     ->count();
+
+        return view('tl.tldash', compact(
+            'totalSubmitted', 
+            'approved', 
+            'changeupdate', 
+            'completed',
+            'volunteerCount',
+            'coordinatorCount',
+            'financeManagerCount',
+            'verifierCount'
+        ));
 }
+
+// Remove your separate getUserRoleCounts() function since we're combining everything
+//     public function tlDashboard() {
+
+//     $userId = session()->get('user_id');
+
+//     $totalSubmitted = DB::table('forms')
+//         ->whereIn('status', [1])
+//         ->count();
+
+//     $approved = DB::table('forms')
+//         ->whereIn('status', [4, 6])
+//         ->count();
+
+//     $changeupdate = DB::table('forms')
+//         ->whereIn('status', [2, 5])
+//         ->count();
+
+//     $completed = DB::table('forms')
+//         ->where('status', [11])
+//         ->count();
+
+//     return view('tl.tldash', compact('totalSubmitted', 'approved', 'changeupdate', 'completed'));
+// }
+
 
    public function fetch_appl_tl1(){
     $forms = Form::where('user_id', session('user_id'))

@@ -212,12 +212,117 @@
                             </div>
                         </div>
                     </div>
-                        <div>
+                    <!-- User Management Section -->
+<div class="row mt-4">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="card-title mb-0">
+                        <i class="mdi mdi-account-group me-2"></i>
+                        User Management
+                    </h4>
+                    <a class="btn btn-warning d-flex align-items-center" href="{{ route('tl_mem') }}">
+                        <i class="fas fa-users-cog me-2"></i>
+                        <span>Manage Members</span>
+                    </a>
+                </div>
+                
+                <div class="row">
+                    <!-- Volunteers Count -->
+                    <div class="col-md-3 mb-3 stretch-card transparent">
+                        <div class="card card-tale">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="mdi mdi-account-heart icon-lg"></i>
+                                </div>
+                                <p class="mb-2 font-weight-medium">Volunteers</p>
+                                <p class="fs-30 mb-2">{{ $volunteerCount ?? 0 }}</p>
+                                <p class="text-muted mb-0">Active Members</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coordinators Count -->
+                    <div class="col-md-3 mb-3 stretch-card transparent">
+                        <div class="card card-dark-blue">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="mdi mdi-account-star icon-lg"></i>
+                                </div>
+                                <p class="mb-2 font-weight-medium">Coordinators</p>
+                                <p class="fs-30 mb-2">{{ $coordinatorCount ?? 0 }}</p>
+                                <p class="text-muted mb-0">Active Members</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finance Managers Count -->
+                    <div class="col-md-3 mb-3 stretch-card transparent">
+                        <div class="card card-light-blue">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="mdi mdi-account-cash icon-lg"></i>
+                                </div>
+                                <p class="mb-2 font-weight-medium">Finance Managers</p>
+                                <p class="fs-30 mb-2">{{ $financeManagerCount ?? 0 }}</p>
+                                <p class="text-muted mb-0">Active Members</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verifiers Count -->
+                    <div class="col-md-3 mb-3 stretch-card transparent">
+                        <div class="card card-light-danger">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="mdi mdi-account-check icon-lg"></i>
+                                </div>
+                                <p class="mb-2 font-weight-medium">Verifiers</p>
+                                <p class="fs-30 mb-2">{{ $verifierCount ?? 0 }}</p>
+                                <p class="text-muted mb-0">Active Members</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Row
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="card bg-light">
+                            <div class="card-body py-3">
+                                <div class="row text-center">
+                                    <div class="col-md-3">
+                                        <span class="text-muted">Total Members</span>
+                                        <h5 class="mb-0 mt-1">{{ ($volunteerCount ?? 0) + ($coordinatorCount ?? 0) + ($financeManagerCount ?? 0) + ($verifierCount ?? 0) }}</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="text-muted">Active Today</span>
+                                        <h5 class="mb-0 mt-1 text-success">{{ $activeTodayCount ?? 0 }}</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="text-muted">New This Month</span>
+                                        <h5 class="mb-0 mt-1 text-info">{{ $newThisMonthCount ?? 0 }}</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="text-muted">Pending Approval</span>
+                                        <h5 class="mb-0 mt-1 text-warning">{{ $pendingApprovalCount ?? 0 }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+                        <!-- <div>
                             <a class="btn btn-warning d-flex align-items-center w-25" href="{{ route('tl_mem') }}">
                                 <i class="fas fa-users-cog me-2"></i>
                                 <span class="menu-title">Manage Members</span>
                             </a>
-                        </div>
+                        </div> -->
                 </div>
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
