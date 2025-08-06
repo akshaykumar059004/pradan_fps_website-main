@@ -9,21 +9,21 @@
 
     <title>PRADAN - Professional Assistance for Development Action</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/feather/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/js/select.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select.dataTables.min.css') }}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="public/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
 </head>
 
 <body>
@@ -31,9 +31,9 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-                <a class="navbar-brand brand-logo me-5" href="{{route('vol')}}"><img src="{{ asset('public/assets/images/icons/Pradan-logo-title.png')}}" class="me-2"
+                <a class="navbar-brand brand-logo me-5" href="{{route('vol')}}"><img src="{{ asset('assets/images/icons/Pradan-logo-title.png')}}" class="me-2"
                         alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="{{route('vol')}}"><img src="{{asset('public/assets/images/icons/Pradan-logo-icon.png')}}"
+                <a class="navbar-brand brand-logo-mini" href="{{route('vol')}}"><img src="{{asset('assets/images/icons/Pradan-logo-icon.png')}}"
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -231,20 +231,19 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('public/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
 
-    <script src="{{ asset('public/assets/vendors/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ asset('public/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('public/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('public/assets/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/template.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
 
-    <script src="{{ asset('public/assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('public/assets/js/template.js') }}"></script>
-    <script src="{{ asset('public/assets/js/settings.js') }}"></script>
-    <script src="{{ asset('public/assets/js/todolist.js') }}"></script>
-
-    <script src="{{ asset('public/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 
 </body>
 
