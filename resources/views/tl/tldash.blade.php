@@ -120,7 +120,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Welcome {{ session('name') }} </h3>
-                                    <h6 class="font-weight-normal mb-0">You are logged in as Team Leader</h6>
+                                    <h6 class="font-weight-normal mb-0">&nbsp;Team Leader</h6>
                                 </div>
                                 <div class="col-12 col-xl-4">
                                     <div class="justify-content-end d-flex">
@@ -128,7 +128,7 @@
                                             <button class="btn btn-sm btn-light bg-white" type="button"
                                                 id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="true">
-                                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                                                <i class="mdi mdi-calendar"></i> Today ({{ \Carbon\Carbon::now()->format('d M Y') }}) </button>
                                         </div>
                                     </div>
                                 </div>

@@ -224,7 +224,7 @@
 
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                            <img src="assets/images/faces/face15.jpg" alt="profile" />
+                            <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="profile" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -286,13 +286,6 @@
                             <span class="menu-title">Applications</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tl_mem') }}">
-                            <i class="fas fa-users-cog me-3"></i>
-                            <span class="menu-title">Manage Members</span>
-                        </a>
-                    </li>
-
                 </ul>
             </nav>
 
