@@ -458,7 +458,7 @@
                                                                     @break
 
                                                                     @case(6)
-                                                                    <button class="btn btn-inverse-success btn-fw">Final
+                                                                    <button class="btn btn-inverse-success btn-fw">
                                                                         Approved</button>
                                                                     @break
 
@@ -484,7 +484,7 @@
 
                                                                     @default
                                                                     <button class="btn btn-inverse-dark btn-fw">Status
-                                                                        Unknown</button>
+                                                                        Unknown <br>Contact Admin</button>
                                                                     @endswitch
                                                                 </td>
 
@@ -1917,7 +1917,7 @@
                     if (response.status == 200) {
                         Swal.fire({
                             title: "Success!",
-                            text: "Forwarded to finance manager",
+                            text: "Form has been rejected",
                             icon: "success",
                             confirmButtonText: "OK"
                         });
