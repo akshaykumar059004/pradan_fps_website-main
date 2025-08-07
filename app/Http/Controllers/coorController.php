@@ -72,11 +72,18 @@ class coorController extends Controller
     }
 
     public function coor_appr($id)
-{
+        {
     Form::where('id', $id)->update(['status' => 4]);
 
     return response()->json(["status"=>200,"message"=>"done"]);
-}
+        }
+
+    public function coor_reject($id)
+        {
+            Form::where('id', $id)->update(['status' => 3]);
+            return response()->json(["status"=>200,"message"=>"done"]);
+        }
+
 public function coor_rem(Request $req)
 {
   
