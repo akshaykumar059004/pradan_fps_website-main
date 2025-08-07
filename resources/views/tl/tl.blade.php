@@ -387,7 +387,7 @@
                                                                 </td>
 
                                                                 <td>
-                                                                    @if($f->status == 1)
+                                                                    @if($f->status == 1 ||$f->status == 2 )
                                                                     {{-- Pre-Funding Submitted by Associate --}}
                                                                     <button type="button"
                                                                         class="btn btn-success coor_appr1"
@@ -398,6 +398,11 @@
                                                                         class="btn btn-warning coor_update"
                                                                         value="{{ $f->id }}">
                                                                         Request Change
+                                                                    </button>
+                                                                    <button type="button"
+                                                                        class="btn btn-danger coor_reject"
+                                                                        value="{{ $f->id }}">
+                                                                        Reject
                                                                     </button>
 
                                                                     @elseif($f->status == 7)
@@ -990,38 +995,38 @@
     </div>
 
     <!-- Land Detail Modal -->
-    <div class="modal fade" id="farmerdet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="landdet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 90%; width: 1000px;">
             <div class="modal-content" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
                 <div class="modal-header" style="border-bottom: 2px solid #dee2e6; background-color:#134E13;">
-                    <h5 class="modal-title text-white" id="exampleModalLabel">Farmer Details</h5>
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Land Details</h5>
                     <button type="button" class="btn-close" style="background-color: #fff;" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Row 1 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Farmer Name:</strong> <span id="f_name"></span>
+                            <strong>Land OwnerShip:</strong> <span id="l_ownership"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Father/Spouse:</strong> <span id="f_spouse"></span>
+                            <strong>Well for Irrigation:</strong> <span id="l_well_irrigation"></span>
                         </div>
                     </div>
 
                     <!-- Row 2 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Mobile:</strong> <span id="f_mobile"></span>
+                            <strong>Patta Number:</strong> <span id="l_patta"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Gender:</strong> <span id="f_gender"></span>
+                            <strong>Total Area:</strong> <span id="l_tarea"></span>
                         </div>
                     </div>
 
                     <!-- Row 3 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Id_Card:</strong> <span id="f_card"></span>
+                            <strong>Id_Ca:</strong> <span id="f_card"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <strong>Members:</strong> <span id="f_member"></span>
@@ -1898,6 +1903,38 @@
             })
         });
 
+        $(document).on("click", ".coor_reject", function(e) {
+            e.preventDefault();
+            var form_id = $(this).val();
+            console.log(form_id);
+            $.ajax({
+                type: "POST",
+                url: `/coor_reject1/${form_id}`,
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.status == 200) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Forwarded to finance manager",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Something went wrong",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                }
+
+
+            })
+        });
+
 
 
         $(document).on("click", ".coor_update", function(e) {
@@ -2277,11 +2314,14 @@
                 });
             });
         });
-                $(document).on('click', '.view-user-btn', function () {
+
+    $(document).on('click', '.view-user-btn', function () {
     var userId = $(this).val();
+    console.log("check");
+    console.log(userId);
 
     $.ajax({
-        url: '/user-details/' + userId,
+        url: '/user-details/' +  userId,  
         type: 'GET',
         success: function (data) {
             $('#user-name').text(data.name);

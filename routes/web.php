@@ -115,6 +115,8 @@ Route::get('/get-remarks/{id}', [CoorController::class, 'getRemarks']);
 
 Route::post('/coor_appr1/{form_id}',[coorController::class,"coor_appr"]);
 
+Route::post('/coor_reject1/{form_id}',[coorController::class,"coor_reject"]);
+
 Route::post('/cform_land',[coorController::class,"form_lands"]);
 
 Route::post('/cform_pond',[coorController::class,"pond_form"]);
@@ -221,6 +223,7 @@ Route::get('/check-mcode', [fmController::class, 'check_mcode']);
 //end routes for fm
 
 Route::get('/user-details/{id}', [mainController::class, 'getUserDetails']);
+
 
 
 
