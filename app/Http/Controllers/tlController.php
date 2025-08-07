@@ -15,12 +15,16 @@ use App\Models\PlantForm;
 class tlController extends Controller
 {
     public function fetch_appl_tl(){
-        $form1 = Form::Where('form_type',1)->get();
-        $form2 = Form::Where('form_type',2)->get();
-        $form3 = Form::Where('form_type',3)->get();
-        if($form1||$form2||$form3){
-            return view('tl/tl',compact('form1','form2','form3'));
-        }
+        $forms = Form::select('id','user_id','farmer_name', 'mobile', 'status', 'form_type', 'created_at')
+            ->whereIn('form_type', [1, 2, 3])
+            ->get()
+            ->groupBy('form_type');
+
+        return view('tl/tl', [
+            'form1' => $forms->get(1, collect()),
+            'form2' => $forms->get(2, collect()),
+            'form3' => $forms->get(3, collect()),
+        ]);
     }
 
     public function tlDashboard() {
@@ -135,12 +139,10 @@ class tlController extends Controller
 }
 
         public function fetch_tl_mem(){
-            $user = User::all();
-          
-            if($user){
-                return view('tl/tl_mem',compact('user'));
-            }
+           $users = User::select('id', 'name', 'email', 'role', 'mobile', 'location', 'photo')
+                    ->paginate(50); // This creates pagination
 
+             return view('tl.tl_mem', compact('users'));
     }
 
     public function form_lands(Request $req)
@@ -693,14 +695,7 @@ $fileUpload->fmb      = $fmbName;
 $fileUpload->photo    = $photoName;
 $fileUpload->passbook = $passbookName;
 $fileUpload->save();
-
-
-    
         return response()->json(['status' => 200, 'message' => 'inserted succesfully']);
-
-
-
-
     
     }
     public function deleteUser($id)

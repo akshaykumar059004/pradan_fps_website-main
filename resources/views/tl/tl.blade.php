@@ -342,7 +342,6 @@
                                                         </thead>
                                                         <tbody>
                                                             @php $s = 1; @endphp
-
                                                             @foreach($form1 as $f)
                                                             @php
                                                             $account = $f->bankDetail;

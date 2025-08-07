@@ -32,6 +32,24 @@
 
 
     <style>
+        .pagination-wrapper {
+                margin-top: 20px;
+                padding-top: 15px;
+                border-top: 1px solid #dee2e6;
+            }
+
+        .pagination-info {
+                font-size: 0.9em;
+            }
+
+        .pagination .page-link {
+                color: #007bff;
+            }
+
+        .pagination .page-item.active .page-link {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
         .step {
             display: none;
         }
@@ -322,8 +340,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table id="land_table"
-                                                        class="table table-bordered table-hover table-striped">
+                                                    <table id="land_table" class="table table-bordered table-hover table-striped">
                                                         <thead class="text-center table-dark">
                                                             <tr>
                                                                 <th>S.No</th>
@@ -338,39 +355,67 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @php $s = 1; @endphp
+                                                            {{-- Calculate starting number for pagination --}}
+                                                            @php 
+                                                                $startingNumber = ($users->currentPage() - 1) * $users->perPage() + 1; 
+                                                            @endphp
 
-                                                            @foreach($user as $f)
+                                                            @forelse($users as $index => $f)
                                                             <tr>
-                                                                <td>{{$s++}}</td>
-                                                                <td>{{$f->name}}</td>
-                                                                <td>{{$f->email}}</td>
-                                                                <td>{{$f->password}}
-                                                                </td>
-                                                                <td>{{$f->role}}
-                                                                </td>
-                                                                <td>{{$f->mobile}}
+                                                                <td>{{ $startingNumber + $index }}</td>
+                                                                <td>{{ $f->name }}</td>
+                                                                <td>{{ $f->email }}</td>
+                                                                <td>
+                                                                    {{-- Don't display raw password for security --}}
+                                                                    <span class="text-muted">••••••••</span>
                                                                 </td>
                                                                 <td>
-                                                                    {{$f->date_of_joining}}
+                                                                    <span class="badge 
+                                                                        @if($f->role == 'vol') badge-primary
+                                                                        @elseif($f->role == 'coor') badge-success  
+                                                                        @elseif($f->role == 'fin') badge-warning
+                                                                        @elseif($f->role == 'verifier') badge-info
+                                                                        @else badge-secondary
+                                                                        @endif">
+                                                                        {{ ucfirst($f->role) }}
+                                                                    </span>
                                                                 </td>
+                                                                <td>{{ $f->mobile }}</td>
+                                                                <td>{{ \Carbon\Carbon::parse($f->date_of_joining)->format('d-m-Y') }}</td>
+                                                                <td>{{ $f->location }}</td>
                                                                 <td>
-                                                                    {{$f->location}}
+                                                                    <button class="btn btn-sm btn-warning edit-btn" value="{{ $f->id }}" title="Edit User">
+                                                                        <i class="fas fa-edit"></i> Edit
+                                                                    </button>
+                                                                    <button class="btn btn-sm btn-danger del" value="{{ $f->id }}" title="Delete User">
+                                                                        <i class="fas fa-trash"></i> Delete
+                                                                    </button>
                                                                 </td>
-                                                                <td><button class="btn btn-warning edit-btn" value="{{$f->id}}">Edit</button>&nbsp;&nbsp;<button class="btn btn-danger del" value="{{$f->id}}">Delete</button></td>
                                                             </tr>
-
-                                                            @endforeach
+                                                            @empty
+                                                            <tr>
+                                                                <td colspan="9" class="text-center text-muted py-4">
+                                                                    <i class="fas fa-users fa-2x mb-2"></i>
+                                                                    <br>No users found.
+                                                                </td>
+                                                            </tr>
+                                                            @endforelse
                                                         </tbody>
                                                     </table>
+                                                </div>
+                                                
+                                                {{-- Pagination wrapper with proper styling --}}
+                                                <div class="pagination-wrapper d-flex justify-content-between align-items-center mt-3">
+                                                    <!-- <div class="pagination-info text-muted">
+                                                        Showing {{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() ?? 0 }} of {{ $users->total() }} users
+                                                    </div> -->
+                                                    <div class="pagination-links">
+                                                        {{ $users->links() }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
                                 </div>
                             </div>
                         </div>

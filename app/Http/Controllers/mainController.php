@@ -13,12 +13,6 @@ use App\Models\FileUpload;
 use App\Models\PlantForm;
 
 
-
-
-
-
-
-
 class mainController extends Controller
 {
 
@@ -1122,9 +1116,9 @@ public function updateLandForm(Request $request)
 
     return response()->json(['success' => 'Land form updated successfully']);
 }
-public function getUserDetails($id)
-{
-    $user = User::find($id);
+    public function getUserDetails($id){
+     $user = User::find($id);
+    //console.log("controller"+$id);
 
     if ($user) {
         return response()->json([
