@@ -205,7 +205,7 @@
             }
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -295,13 +295,6 @@
                             <span class="menu-title">Export Records</span>
                         </a>
                     </li>
-                    
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tl_mem') }}">
-                            <i class="fas fa-users-cog me-3"></i>
-                            <span class="menu-title">Manage Members</span>
-                        </a>
-                    </li> -->
 
                 </ul>
             </nav>
@@ -318,186 +311,62 @@
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link active" data-bs-toggle="tab" href="#landform" role="tab"
                                             aria-selected="true">
-                                            <i class="fas fa-seedling"></i><b>&nbsp;Land Form</b>
+                                            <i class="fas fa-seedling"></i><b>&nbsp;Land Records</b>
                                         </a>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link" data-bs-toggle="tab" href="#pondform" role="tab"
                                             aria-selected="false">
-                                            <i class="fas fa-water"></i><b>&nbsp;Pond Form</b>
+                                            <i class="fas fa-water"></i><b>&nbsp;Pond Records</b>
                                         </a>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link" data-bs-toggle="tab" href="#plantform" role="tab"
                                             aria-selected="false">
-                                            <i class="fas fa-tree"></i><b>&nbsp;Plantation Form</b>
+                                            <i class="fas fa-tree"></i><b>&nbsp;Plantation Records</b>
                                         </a>
                                     </li>
 
                                 </ul>
                                 <div class="tab-content tabcontent-border">
-                                    <div class="tab-pane p-20 active show" id="landform" role="tabpanel">
+
+
+                                    <div class="tab-pane p-20 active" id="landform" role="tabpanel">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title">Land Form</h4>
+                                                <h4 class="card-title">Land Records</h4>
                                                 <div class="table-responsive">
-                                                    <table id="land_table"
-                                                        class="table table-bordered table-hover table-striped text-center">
-                                                        <thead class="text-center table-dark">
-                                                            <tr>
-                                                                <th>S.No</th>
-                                                                <th>Application Number</th>
-                                                                <th>Farmer Details</th>
-                                                                <th>Land Details</th>
-                                                                <th>Bank Details</th>
-                                                                <th>Documents</th>
-                                                                <th>Action</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @php $s = 1; @endphp
+                                                    <!-- Date Range Filter Form -->
+                                                    <form id="date-filter-form" style="padding: 15px; border: 1px solid #ddd; border-radius: 10px; background: #f8f9fa; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+                                                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+                                                            <!-- From Date -->
+                                                            <div style="flex: 1;">
+                                                                <label for="from_date" style="font-weight: bold;">From Date:</label>
+                                                                <input type="date" id="from_date" name="from_date" required
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; outline: none;">
+                                                            </div>
 
-                                                            @foreach($form1 as $f)
-                                                            @php
-                                                            $account = $f->bankDetail;
-                                                            @endphp
-                                                            <tr>
-                                                                <td>{{$s++}}</td>
-                                                                <td>#TN-00{{$f->id}}</td>
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="farmer_detail"
-                                                                        value="{{$f->id}}"><i class="fas fa-eye"></i>View</button>
-                                                                </td>
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="land_detail"
-                                                                        value="{{$f->id}}"><i class="fas fa-eye"></i>View</button>
-                                                                </td>
-                                                                <td><button id="bank_detail" value="{{ $f->id }}" class="btn btn-link p-0"
-                                                                        style="color: black; font-weight: bold; text-decoration: underline;">
-                                                                        <b>
-                                                                            @php
-                                                                                $accountNumber = $account->account_number ?? '';
-                                                                                $length = strlen($accountNumber);
-                                                                                $visibleDigits = 4;
-                                                                                $maskLength = max(0, $length - $visibleDigits);
-                                                                            @endphp
-                                                                            {{ str_repeat('X', $maskLength) . substr($accountNumber, -$visibleDigits) }}
-                                                                        </b>
-                                                                    </button>
-                                                                </td>
-                                                                <td>
-                                                                    <button type="button" class="btn btn-primary"
-                                                                        id="doc_view" value="{{$f->id}}">View</button>
+                                                            <!-- To Date -->
+                                                            <div style="flex: 1;">
+                                                                <label for="to_date" style="font-weight: bold;">To Date:</label>
+                                                                <input type="date" id="to_date" name="to_date" required
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; outline: none;">
+                                                            </div>
 
-                                                                    @if($f->status == 7)
-                                                                    <button type="button"
-                                                                        class="btn btn-info btn-view-pf-land"
-                                                                        value="{{ $f->id }}">
-                                                                        View PF Details
-                                                                    </button>
-                                                                    @endif
-                                                                </td>
+                                                            <!-- Buttons (Now with Margin-Top) -->
+                                                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                                                <!-- Filter Button -->
+                                                                <button type="submit" style="padding: 8px 15px; border: none; border-radius: 8px; background: #007bff; color: white; font-weight: bold; cursor: pointer;">
+                                                                    Filter
+                                                                </button>
 
-                                                                <td>
-                                                                    @if($f->status == 1)
-                                                                    {{-- Pre-Funding Submitted by Associate --}}
-                                                                    <button type="button"
-                                                                        class="btn btn-success coor_appr1"
-                                                                        value="{{ $f->id }}">
-                                                                        Approve
-                                                                    </button>&nbsp;&nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-warning coor_update"
-                                                                        value="{{ $f->id }}">
-                                                                        Request Change
-                                                                    </button>
-
-                                                                    @elseif($f->status == 7)
-                                                                    {{-- Post-Funding Submitted by Associate --}}
-                                                                    <button type="button"
-                                                                        class="btn btn-success coor_pf_appr"
-                                                                        value="{{ $f->id }}">
-                                                                        Approve PF
-                                                                    </button>&nbsp;&nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-warning coor_pf_update"
-                                                                        value="{{ $f->id }}">
-                                                                        Request Edit PF
-                                                                    </button>
-
-                                                                    @elseif($f->status == 2 || $f->status == 8)
-                                                                    {{-- Show View Reason button for edit requests --}}
-                                                                    <button class="btn btn-outline-info view-reason-btn"
-                                                                        data-id="{{ $f->id }}">
-                                                                        View Reason
-                                                                    </button>
-
-
-                                                                    @else
-                                                                    <span class="text-muted">No actions</span>
-                                                                    @endif
-                                                                </td>
-
-                                                                <td>
-                                                                    @switch($f->status)
-                                                                    @case(1)
-                                                                    <button class="btn btn-inverse-info btn-fw">Submitted by
-                                                                        Associate</button>
-                                                                    @break
-
-                                                                    @case(2)
-                                                                    <button class="btn btn-inverse-warning btn-fw">Change Requested by
-                                                                        You</button>
-                                                                    @break
-
-                                                                    @case(3)
-                                                                    <button class="btn btn-inverse-danger btn-fw">Rejected</button>
-                                                                    @break
-
-                                                                    @case(4)
-                                                                    <button class="btn btn-inverse-info btn-fw">Forwarded to Finance
-                                                                        Manager</button>
-                                                                    @break
-
-                                                                    @case(5)
-                                                                    <button class="btn btn-inverse-warning btn-fw">Finance Requested
-                                                                        Change</button>
-                                                                    @break
-
-                                                                    @case(6)
-                                                                    <button class="btn btn-inverse-success btn-fw">Final
-                                                                        Approved</button>
-                                                                    @break
-
-                                                                    @case(7)
-                                                                    <button class="btn btn-inverse-info btn-fw">Post-Funding
-                                                                        Submitted by Associate</button>
-                                                                    @break
-
-                                                                    @case(8)
-                                                                    <button class="btn btn-inverse-warning btn-fw">PF Edit Requested by
-                                                                        You</button>
-                                                                    @break
-
-                                                                    @case(9)
-                                                                    <button class="btn btn-inverse-info btn-fw">PF Forwarded to Finance
-                                                                        Manager</button>
-                                                                    @break
-
-                                                                    @default
-                                                                    <button class="btn btn-inverse-dark btn-fw">Status
-                                                                        Unknown</button>
-                                                                    @endswitch
-                                                                </td>
-
-
-
-                                                            </tr>
-
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                                <!-- Download Button -->
+                                                                <button id="download" style="padding: 8px 15px; border: none; border-radius: 8px; background: #28a745; color: white; font-weight: bold; cursor: pointer;">
+                                                                    Download as Excel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -506,151 +375,39 @@
                                     <div class="tab-pane p-20" id="pondform" role="tabpanel">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title">Pond Form</h4>
+                                                <h4 class="card-title">Pond Records</h4>
                                                 <div class="table-responsive">
-                                                    <table id="pond_table"
-                                                        class="table table-bordered table-hover table-striped text-center">
-                                                        <thead class="text-center table-dark">
-                                                            <tr>
-                                                                <th>S.No</th>
-                                                                <th>Application Number</th>
-                                                                <th>Farmer Details</th>
-                                                                <th>Pond Details</th>
-                                                                <th>Bank Details</th>
-                                                                <th>Documents</th>
-                                                                <th>Action</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @php $s = 1; @endphp
+                                                    <!-- Date Range Filter Form -->
+                                                    <form id="date-filter-form" style="padding: 15px; border: 1px solid #ddd; border-radius: 10px; background: #f8f9fa; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+                                                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+                                                            <!-- From Date -->
+                                                            <div style="flex: 1;">
+                                                                <label for="from_date" style="font-weight: bold;">From Date:</label>
+                                                                <input type="date" id="from_date" name="from_date" required
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; outline: none;">
+                                                            </div>
 
-                                                            @foreach($form2 as $f)
-                                                            @php
-                                                            $account = $f->bankDetail->first();
-                                                            @endphp
-                                                            <tr>
-                                                                <td>{{$s++}}</td>
-                                                                <td>#TN-00{{$f->id}}</td>
+                                                            <!-- To Date -->
+                                                            <div style="flex: 1;">
+                                                                <label for="to_date" style="font-weight: bold;">To Date:</label>
+                                                                <input type="date" id="to_date" name="to_date" required
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; outline: none;">
+                                                            </div>
 
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="farmer_detail"
-                                                                        value="{{$f->id}}"><i class="fas fa-eye"></i>View</button>
-                                                                </td>
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="pond_detail"
-                                                                        value="{{$f->id}}"><i class="fas fa-eye"></i>View</button>
-                                                                </td>
-                                                                <td><button id="bank_detail" value="{{ $f->id }}" class="btn btn-link p-0"
-                                                                        style="color: black; font-weight: bold; text-decoration: underline;">
-                                                                        <b>{{ str_repeat('X', strlen($account->account_number) - 4) . substr($account->account_number, -4) }}</b>
-                                                                    </button>
-                                                                    @if($f->status == 7)
-                                                                    <button type="button"
-                                                                        class="btn btn-info btn-view-pf-pond"
-                                                                        value="{{ $f->id }}">
-                                                                        View PF Details
-                                                                    </button>
-                                                                    @endif
-                                                                </td>
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="doc_view" value="{{$f->id}}">View</button>
-                                                                </td>
-                                                                <td>
-                                                                    @if($f->status == 1)
-                                                                    {{-- Pre-Funding Submitted by Associate --}}
-                                                                    <button type="button"
-                                                                        class="btn btn-primary coor_appr1"
-                                                                        value="{{ $f->id }}">
-                                                                        Approve
-                                                                    </button>&nbsp;&nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-warning coor_update"
-                                                                        value="{{ $f->id }}">
-                                                                        Request Change
-                                                                    </button>
+                                                            <!-- Buttons (Now with Margin-Top) -->
+                                                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                                                <!-- Filter Button -->
+                                                                <button type="submit" style="padding: 8px 15px; border: none; border-radius: 8px; background: #007bff; color: white; font-weight: bold; cursor: pointer;">
+                                                                    Filter
+                                                                </button>
 
-                                                                    @elseif($f->status == 7)
-                                                                    {{-- Post-Funding Submitted by Associate --}}
-                                                                    <button type="button"
-                                                                        class="btn btn-success coor_pf_appr"
-                                                                        value="{{ $f->id }}">
-                                                                        Approve PF
-                                                                    </button>&nbsp;&nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-warning coor_pf_update"
-                                                                        value="{{ $f->id }}">
-                                                                        Request Edit PF
-                                                                    </button>
-
-                                                                    @elseif($f->status == 2 || $f->status == 8)
-                                                                    {{-- Show View Reason button for edit requests --}}
-                                                                    <button class="btn btn-outline-info view-reason-btn"
-                                                                        data-id="{{ $f->id }}">
-                                                                        View Reason
-                                                                    </button>
-
-
-                                                                    @else
-                                                                    <span class="text-muted">No actions</span>
-                                                                    @endif
-                                                                </td>
-
-                                                                <td>
-                                                                    @switch($f->status)
-                                                                    @case(1)
-                                                                    <button class="btn btn-inverse-info">Submitted by
-                                                                        Associate</button>
-                                                                    @break
-
-                                                                    @case(2)
-                                                                    <button class="btn btn-inverse-warning">Change Requested by
-                                                                        You</button>
-                                                                    @break
-
-                                                                    @case(3)
-                                                                    <button class="btn btn-inverse-danger">Rejected</button>
-                                                                    @break
-
-                                                                    @case(4)
-                                                                    <button class="btn btn-inverse-info">Forwarded to Finance
-                                                                        Manager</button>
-                                                                    @break
-
-                                                                    @case(5)
-                                                                    <button class="btn btn-inverse-warning">Finance Requested
-                                                                        Change</button>
-                                                                    @break
-
-                                                                    @case(6)
-                                                                    <button class="btn btn-inverse-success">Final
-                                                                        Approved</button>
-                                                                    @break
-
-                                                                    @case(7)
-                                                                    <button class="btn btn-inverse-info">Post-Funding
-                                                                        Submitted by Associate</button>
-                                                                    @break
-
-                                                                    @case(8)
-                                                                    <button class="btn btn-inverse-warning">PF Edit Requested by
-                                                                        You</button>
-                                                                    @break
-
-                                                                    @case(9)
-                                                                    <button class="btn btn-inverse-info">PF Forwarded to Finance
-                                                                        Manager</button>
-                                                                    @break
-
-                                                                    @default
-                                                                    <button class="btn btn-inverse-dark">Status
-                                                                        Unknown</button>
-                                                                    @endswitch
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                                <!-- Download Button -->
+                                                                <button id="download" style="padding: 8px 15px; border: none; border-radius: 8px; background: #28a745; color: white; font-weight: bold; cursor: pointer;">
+                                                                    Download as Excel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -659,153 +416,39 @@
                                     <div class="tab-pane p-20" id="plantform" role="tabpanel">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title">Plantation Form</h4>
+                                                <h4 class="card-title">Plantation Records</h4>
                                                 <div class="table-responsive">
-                                                    <table id="plant_table"
-                                                        class="table table-bordered table-hover table-striped text-center">
-                                                        <thead class="text-center table-dark">
-                                                            <tr>
-                                                                <th>S.No</th>
-                                                                <th>Application Number</th>
-                                                                <th>Farmer Details</th>
-                                                                <th>Plantation Details</th>
-                                                                <th>Bank Details</th>
-                                                                <th>Documents</th>
-                                                                <th>Action</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @php $s = 1; @endphp
-                                                            @foreach($form3 as $f)
-                                                            @php
-                                                            $account = $f->bankDetail->first();
-                                                            @endphp
-                                                            <tr>
-                                                                <td>{{$s++}}</td>
-                                                                <td>#TN-00{{$f->id}}</td>
+                                                    <!-- Date Range Filter Form -->
+                                                    <form id="date-filter-form" style="padding: 15px; border: 1px solid #ddd; border-radius: 10px; background: #f8f9fa; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+                                                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+                                                            <!-- From Date -->
+                                                            <div style="flex: 1;">
+                                                                <label for="from_date" style="font-weight: bold;">From Date:</label>
+                                                                <input type="date" id="from_date" name="from_date" required
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; outline: none;">
+                                                            </div>
 
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="farmer_detail"
-                                                                        value="{{$f->id}}"><i class="fas fa-eye"></i>View</button>
-                                                                </td>
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="plant_detail"
-                                                                        value="{{$f->id}}"><i class="fas fa-eye"></i>View</button>
-                                                                </td>
-                                                                <td>
-                                                                    <button id="bank_detail" value="{{ $f->id }}" class="btn btn-link p-0"
-                                                                        style="color: black; font-weight: bold; text-decoration: underline;">
-                                                                        <b>{{ str_repeat('X', strlen($account->account_number) - 4) . substr($account->account_number, -4) }}</b>
-                                                                    </button>
-                                                                    @if($f->status == 7)
-                                                                    <button type="button"
-                                                                        class="btn btn-info btn-view-pf-plant"
-                                                                        value="{{ $f->id }}">
-                                                                        View PF Details
-                                                                    </button>
-                                                                    @endif
-                                                                </td>
-                                                                <td><button type="button" class="btn btn-primary"
-                                                                        id="doc_view" value="{{$f->id}}">View</button>
-                                                                </td>
-                                                                <td>
-                                                                    @if($f->status == 1)
-                                                                    {{-- Pre-Funding Submitted by Associate --}}
-                                                                    <button type="button"
-                                                                        class="btn btn-success coor_appr1"
-                                                                        value="{{ $f->id }}">
-                                                                        Approve
-                                                                    </button>&nbsp;&nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-warning coor_update"
-                                                                        value="{{ $f->id }}">
-                                                                        Request Change
-                                                                    </button>
+                                                            <!-- To Date -->
+                                                            <div style="flex: 1;">
+                                                                <label for="to_date" style="font-weight: bold;">To Date:</label>
+                                                                <input type="date" id="to_date" name="to_date" required
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; outline: none;">
+                                                            </div>
 
-                                                                    @elseif($f->status == 7)
-                                                                    {{-- Post-Funding Submitted by Associate --}}
-                                                                    <button type="button"
-                                                                        class="btn btn-success coor_pf_appr"
-                                                                        value="{{ $f->id }}">
-                                                                        Approve PF
-                                                                    </button>&nbsp;&nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-warning coor_pf_update"
-                                                                        value="{{ $f->id }}">
-                                                                        Request Edit PF
-                                                                    </button>
+                                                            <!-- Buttons (Now with Margin-Top) -->
+                                                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                                                <!-- Filter Button -->
+                                                                <button type="submit" style="padding: 8px 15px; border: none; border-radius: 8px; background: #007bff; color: white; font-weight: bold; cursor: pointer;">
+                                                                    Filter
+                                                                </button>
 
-                                                                    @elseif($f->status == 2 || $f->status == 8)
-                                                                    {{-- Show View Reason button for edit requests --}}
-                                                                    <button class="btn btn-outline-info view-reason-btn"
-                                                                        data-id="{{ $f->id }}">
-                                                                        View Reason
-                                                                    </button>
-
-
-                                                                    @else
-                                                                    <span class="text-muted">No actions</span>
-                                                                    @endif
-                                                                </td>
-
-                                                                <td>
-                                                                    @switch($f->status)
-                                                                    @case(1)
-                                                                    <button class="btn btn-inverse-info">Submitted by
-                                                                        Associate</button>
-                                                                    @break
-
-                                                                    @case(2)
-                                                                    <button class="btn btn-inverse-warning">Change Requested by
-                                                                        You</button>
-                                                                    @break
-
-                                                                    @case(3)
-                                                                    <button class="btn btn-inverse-danger">Rejected</button>
-                                                                    @break
-
-                                                                    @case(4)
-                                                                    <button class="btn btn-inverse-info">Forwarded to Finance
-                                                                        Manager</button>
-                                                                    @break
-
-                                                                    @case(5)
-                                                                    <button class="btn btn-inverse-warning">Finance Requested
-                                                                        Change</button>
-                                                                    @break
-
-                                                                    @case(6)
-                                                                    <button class="btn btn-inverse-success">Final
-                                                                        Approved</button>
-                                                                    @break
-
-                                                                    @case(7)
-                                                                    <button class="btn btn-inverse-info">Post-Funding
-                                                                        Submitted by Associate</button>
-                                                                    @break
-
-                                                                    @case(8)
-                                                                    <button class="btn btn-inverse-warning">PF Edit Requested by
-                                                                        You</button>
-                                                                    @break
-
-                                                                    @case(9)
-                                                                    <button class="btn btn-inverse-info">PF Forwarded to Finance
-                                                                        Manager</button>
-                                                                    @break
-
-                                                                    @default
-                                                                    <button class="btn btn-inverse-dark">Status
-                                                                        Unknown</button>
-                                                                    @endswitch
-                                                                </td>
-
-                                                            </tr>
-
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                                <!-- Download Button -->
+                                                                <button id="download" style="padding: 8px 15px; border: none; border-radius: 8px; background: #28a745; color: white; font-weight: bold; cursor: pointer;">
+                                                                    Download as Excel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2139,967 +1782,6 @@
             </form>
         </div>
     </div>
-
-
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function() {
-            $('#land_table').DataTable({
-                lengthChange: false
-            });
-            $('#pond_table').DataTable({
-                lengthChange: false
-            });
-            $('#plant_table').DataTable({
-                lengthChange: false
-            });
-            $('#land_table_filter input[type="search"]').attr('placeholder', 'Search...');
-            $('#pond_table_filter input[type="search"]').attr('placeholder', 'Search...');
-            $('#plant_table_filter input[type="search"]').attr('placeholder', 'Search...');
-
-        });
-
-        $(document).ready(function() {
-            $('#length, #breadth, #depth').on('input', function() {
-                let length = parseFloat($('#length').val()) || 0;
-                let breadth = parseFloat($('#breadth').val()) || 0;
-                let depth = parseFloat($('#depth').val()) || 0;
-                let volume = length * breadth * depth;
-                $('#volume').val(volume.toFixed(2));
-            });
-
-
-        });
-    </script>
-
-    <script>
-        function nextStep(current, next) {
-            document.getElementById('step' + current).style.display = 'none';
-            document.getElementById('step' + next).style.display = 'block';
-        }
-
-        function prevStep(current, prev) {
-            document.getElementById('step' + current).style.display = 'none';
-            document.getElementById('step' + prev).style.display = 'block';
-        }
-
-
-
-        function updateIdentityTitle() {
-            const selectedIdentity = document.querySelector('input[name="identityCard"]:checked');
-            const fileUploadLabel = document.getElementById("fileUploadLabel");
-            if (selectedIdentity) {
-                fileUploadLabel.textContent = `Upload ${selectedIdentity.value} Proof`;
-            }
-        }
-
-        function nextStep(current, next) {
-            document.getElementById("step" + current).style.display = "none";
-            document.getElementById("step" + next).style.display = "block";
-        }
-
-        function prevStep(current, previous) {
-            document.getElementById("step" + current).style.display = "none";
-            document.getElementById("step" + previous).style.display = "block";
-        };
-
-        $(document).on("submit", "#landform", function(e) {
-            e.preventDefault();
-            var form = new FormData(this);
-            $.ajax({
-                type: "POST",
-                url: "/form_land",
-                data: form,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Form Submitted Successfully",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Something went wrong",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-            })
-
-        })
-
-
-        $(document).on("click", "#farmer_detail", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: `/fetch_farmer_det/${form_id}`,
-                success: function(response) {
-                    if (response.status == 200) {
-                        console.log(response.data);
-                        $("#f_name").text(response.data.farmer_name);
-                        $("#f_spouse").text(response.data.spouse);
-                        $("#f_mobile").text(response.data.mobile);
-                        $("#f_gender").text(response.data.gender);
-                        $("#f_card").text(response.data.id_type);
-                        $("#f_member").text(response.data.h_members);
-                        $("#f_number").text(response.data.id_number);
-                        $("#f_hamlet").text(response.data.hamlet);
-                        $("#f_panchayat").text(response.data.panchayat);
-                        $("#f_block").text(response.data.block);
-                        $("#f_household_type").text(response.data.type_of_households);
-                        $("#f_special_category").text(response.data.special_catog);
-                        $("#f_caste").text(response.data.caste);
-                        $("#f_occupation").text(response.data.hh_occupation);
-                        $("#f_house_type").text(response.data.type_of_house);
-                        $("#f_drinking_water").text(response.data.drinking_water);
-                        $("#f_potability").text(response.data.potability);
-                        $("#f_domestic_water").text(response.data.domestic_water);
-                        $("#f_toilet_availability").text(response.data.toilet_avail);
-                        $("#f_toilet_condition").text(response.data.toilet_cond);
-                        $("#f_house_owner").text(response.data.house_owner);
-                        $("#f_household_education").text(response.data.household_education);
-                        $("#f_latitude").text(response.data.lat);
-                        $("#f_longitude").text(response.data.lon);
-                        $("#f_mcode").text(response.data.mcode);
-
-                        $("#farmerdet_modal").modal("show");
-                    }
-
-                }
-
-            })
-        });
-
-        $(document).on("click", "#land_detail", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: `/fetch_land_det/${form_id}`,
-                success: function(response) {
-                    if (response.status == 200) {
-                        $("#l_ownership").text(response.data.ownership);
-                        $("#l_well_irrigation").text(response.data.well_irrigation); // Newly added
-                        $("#l_area_irrigated").text(response.data.area_irrigated); // Newly added
-                        $("#l_irrigated_lands").text(response.data.irrigated_lands); // Newly added
-                        $("#l_patta").text(response.data.patta);
-                        $("#l_tarea").text(response.data.total_area);
-                        $("#l_revenue").text(response.data.revenue);
-                        $("#l_sf").text(response.data.sf_number);
-                        $("#l_soil").text(response.data.soil_type);
-                        $("#l_benefit").text(response.data.land_to_benefit);
-                        $("#l_field").text(response.data.field_insp);
-                        $("#l_site").text(response.data.site_app);
-                        $("#l_doi").text(response.data.date_of_ins);
-                        $("#l_doa").text(response.data.date_of_app);
-                        $("#l_type").text(response.data.type_of_work);
-                        $("#l_area").text(response.data.area_benefited);
-                        $("#l_oth").text(response.data.any_other_works);
-                        $("#l_pradan").text(response.data.p_contribution);
-                        $("#l_farmer").text(response.data.f_contribution);
-                        $("#l_total").text(response.data.total_est);
-
-                        $("#landdet_modal").modal("show");
-
-                    }
-                }
-
-            })
-        });
-
-        $(document).on("click", "#bank_detail", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: `/fetch_bank_det/${form_id}`,
-                success: function(response) {
-                    if (response.status == 200) {
-
-
-                        $("#b_hname").text(response.data.account_holder_name);
-                        $("#b_no").text(response.data.account_number);
-                        $("#b_name").text(response.data.bank_name);
-                        $("#b_branch").text(response.data.branch);
-                        $("#b_ifsc").text(response.data.ifsc_code);
-                        $("#bankdet_modal").modal("show");
-
-
-                    }
-                }
-
-            })
-
-
-        });
-
-        $(document).on("click", "#pond_detail", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log("deiiii")
-            $.ajax({
-                type: "GET",
-                url: `/fetch_pond_det/${form_id}`,
-                success: function(response) {
-                    console.log(response);
-                    if (response.status == 200) {
-                        $("#p_owner").text(response.data.ownership);
-                        $("#p_patta").text(response.data.patta);
-                        $("#p_tarea").text(response.data.total_area);
-                        $("#p_irrigated_lands").text(response.data.irrigated_lands); // Newly added
-                        $("#p_revenue").text(response.data.revenue);
-                        $("#p_livestock").text(response.data.livestocks); // Newly added
-                        $("#p_crop_season").text(response.data.crop_season); // Newly added
-                        $("#p_well_irrigation").text(response.data.well_irrigation); // Newly added
-                        $("#p_sf").text(response.data.sf_number);
-                        $("#p_soil").text(response.data.soil_type);
-                        $("#p_land").text(response.data.land_serve);
-                        $("#p_field").text(response.data.field_insp);
-                        $("#p_site").text(response.data.site_app);
-                        $("#p_type_of_work").text(response.data.type_of_work); // Newly added
-                        $("#p_doi").text(response.data.date_of_ins);
-                        $("#p_doa").text(response.data.date_of_app);
-                        $("#p_len").text(response.data.length);
-                        $("#p_dep").text(response.data.depth);
-                        $("#p_breadth").text(response.data.breadth); // Newly added
-                        $("#p_vol").text(response.data.volume);
-                        $("#p_pcont").text(response.data.p_contribution);
-                        $("#p_fcont").text(response.data.f_contribution);
-                        $("#total_est").text(response.data.total_est);
-
-                        $("#ponddet_modal").modal("show");
-
-
-                    }
-                }
-
-            })
-
-
-        });
-
-
-        $(document).on("click", "#plant_detail", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log("deiiii")
-            $.ajax({
-                type: "GET",
-                url: `/fetch_plant_det/${form_id}`,
-                success: function(response) {
-                    console.log(response);
-                    $("#plant_ownership").text(response.data.ownership);
-                    $("#plant_well_irrigation").text(response.data.well_irrigation);
-                    $("#plant_area_irrigated").text(response.data.area_irrigated);
-                    $("#plant_irrigated_lands").text(response.data.irrigated_lands);
-                    $("#plant_patta").text(response.data.patta);
-                    $("#plant_total_area").text(response.data.total_area);
-                    $("#plant_revenue").text(response.data.revenue);
-                    $("#plant_crop_season").text(response.data.crop_season);
-                    $("#plant_livestock").text(response.data.livestocks);
-                    $("#plant_type").text(response.data.plantaions);
-                    $("#plant_sf_no").text(response.data.sf_number);
-                    $("#plant_soil_type").text(response.data.soil_type);
-                    $("#plant_land_benefit").text(response.data.land_to_benefit);
-                    $("#plant_field_inspection").text(response.data.field_insp);
-                    $("#plant_site_approval").text(response.data.site_app);
-                    $("#plant_date_of_inspection").text(response.data.date_of_ins);
-                    $("#plant_date_of_approval").text(response.data.date_of_app);
-                    $("#plant_type_of_work").text(response.data.type_of_work);
-                    $("#plant_area_benefit").text(response.data.area_benefited_by_proposal);
-                    $("#plant_other_works").text(response.data.any_other_works);
-                    $("#plant_pradan_contribution").text(response.data.p_contribution);
-                    $("#plant_farmer_contribution").text(response.data.f_contribution);
-                    $("#plant_total_amount").text(response.data.total_est);
-
-                    $("#plantdet_modal").modal("show");
-                }
-
-            })
-
-
-        });
-
-        $(document).on("click", ".coor_appr1", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log(form_id);
-            $.ajax({
-                type: "POST",
-                url: `/coor_appr1/${form_id}`,
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    if (response.status == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Forwarded to finance manager",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Something went wrong",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-
-
-            })
-        });
-
-
-
-        $(document).on("click", ".coor_update", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            $("#rem_form_id").val(form_id);
-            $("#rem_modal").modal("show");
-        });
-
-        $(document).on("submit", "#remarks_form", function(e) {
-            e.preventDefault();
-            var form = new FormData(this);
-            console.log(form);
-            $.ajax({
-                type: "POST",
-                url: "/coor/rem",
-                data: form,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Request for change updated",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                        $('#rem_modal').modal('hide');
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Something went wrong",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-            });
-
-        })
-
-        $(document).on("click", ".showrem", function(e) {
-            e.preventDefault();
-
-            var formId = $(this).val(); // get form ID from button value
-
-            // Fetch the remarks using AJAX
-            $.ajax({
-                type: "GET",
-                url: "/get-remarks/" + formId,
-                success: function(response) {
-                    if (response.success == 200) {
-                        $('#view_remark_text').text(response.remarks); // Set the remarks
-                        $('#view_rem_modal').modal('show'); // Show modal
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Remarks not found",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Server error",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            });
-        });
-
-        $(document).on("click", "#doc_view", function(e) {
-            e.preventDefault();
-            let formId = $(this).val();
-
-            // Clear previous buttons
-            $('#document-buttons').html('');
-
-            // List of document labels
-            let labels = ['Patta', 'FMB', 'Passbook', 'Identity', 'Photo'];
-
-            labels.forEach(function(label) {
-                let button = `
-            <button class="btn btn-outline-primary m-2 doc-file-btn" 
-                    value="${formId}">
-                ${label}
-            </button>`;
-                $('#document-buttons').append(button);
-            });
-
-            // Open the modal
-            $('#documentModal').modal('show');
-        });
-
-        $(document).on("click", ".doc-file-btn", function() {
-            let form_id = $(this).val();
-            let type = $(this).text().trim().toLowerCase(); // 'patta', 'identity', etc.
-
-            $.ajax({
-                url: "/get-document",
-                type: "POST",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    form_id: form_id,
-                    type: type
-                },
-                success: function(response) {
-                    if (response.file_url) {
-                        $('#docPreview').attr('src', response.file_url);
-                        $('#docDownload').attr('href', response.file_url);
-                        $('#fileViewerModal').modal('show');
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "File not found",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                },
-                error: function() {
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Something went wrong",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            });
-        });
-
-        $(document).on("click", "#pf_land", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log(form_id);
-            $("#pf_land_id").val(form_id);
-            $("#pf_land_modal").modal('show');
-
-        })
-        $(document).on("click", "#pf_pond", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log(form_id);
-            $("#pf_pond_id").val(form_id);
-            $("#pf_pond_modal").modal('show');
-
-        })
-        $(document).on("click", "#pf_plant", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log(form_id);
-            $("#pf_plant_id").val(form_id);
-            $("#pf_plant_modal").modal('show');
-
-        });
-        $(document).on("submit", "#pf_land_form", function(e) {
-            e.preventDefault();
-            var form = new FormData(this);
-            console.log(form);
-            $.ajax({
-                type: "POST",
-                url: "/submit/coor/pf_land",
-                data: form,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "postfunding submitted",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Something went wrong",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-            })
-        });
-        $(document).on("submit", "#pf_pond_form", function(e) {
-            e.preventDefault();
-            var form = new FormData(this);
-            console.log(form);
-            $.ajax({
-                type: "POST",
-                url: "/submit/coor/pf_pond",
-                data: form,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "postfunding submitted",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Something went wrong",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-            })
-        });
-        $(document).on("submit", "#pf_plant_form", function(e) {
-            e.preventDefault();
-            var form = new FormData(this);
-            console.log(form);
-            $.ajax({
-                type: "POST",
-                url: "/submit/coor/pf_plant",
-                data: form,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "postfunding submitted",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Something went wrong",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-            })
-        });
-
-        $(document).on("click", ".ed_bank", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            $.ajax({
-                url: '/get-bank-details/' + form_id, // endpoint in MainController
-                type: 'GET',
-                success: function(response) {
-                    if (response.success) {
-                        let bank = response.data;
-                        $('#edit_form_id').val(form_id); // hidden field to use during update
-
-                        $('#edit_holder_name').val(bank.account_holder_name);
-                        $('#edit_account_number').val(bank.account_number);
-                        $('#edit_bank_name').val(bank.bank_name);
-                        $('#edit_branch').val(bank.branch);
-                        $('#edit_ifsc').val(bank.ifsc_code);
-                        $('#edit_bankdet_modal').modal('show');
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Bank details not found",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Error fetching bank details",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            });
-        });
-
-        $(document).on("click", ".ed_farmer", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log(form_id);
-
-            $.ajax({
-                url: '/get-farmer-details/' + form_id,
-                type: 'GET',
-                success: function(response) {
-                    // Populate modal fields
-                    $('#input_f_name').val(response.farmer_name);
-                    $('#input_f_spouse').val(response.spouse);
-                    $('#input_f_mobile').val(response.mobile);
-                    $('#input_f_gender').val(response.gender);
-                    $('#input_f_card').val(response.id_type);
-                    $('#input_f_member').val(response.h_members);
-                    $('#input_f_number').val(response.id_number);
-                    $('#input_f_hamlet').val(response.hamlet);
-                    $('#input_f_panchayat').val(response.panchayat);
-                    $('#input_f_block').val(response.block);
-                    $('#input_f_household_type').val(response.type_of_households);
-                    $('#input_f_special_category').val(response.special_catog);
-                    $('#input_f_caste').val(response.caste);
-                    $('#input_f_occupation').val(response.hh_occupation);
-                    $('#input_f_house_type').val(response.type_of_house);
-                    $('#input_f_drinking_water').val(response.drinking_water);
-                    $('#input_f_potability').val(response.potability);
-                    $('#input_f_domestic_water').val(response.domestic_water);
-                    $('#input_f_toilet_availability').val(response.toilet_avail);
-                    $('#input_f_toilet_condition').val(response.toilet_cond);
-                    $('#input_f_house_owner').val(response.house_owner);
-                    $('#input_f_household_education').val(response.household_education);
-                    $('#input_f_latitude').val(response.lat);
-                    $('#input_f_longitude').val(response.lon);
-                    $('#input_f_mcode').val(response.mcode);
-
-                    $('#edit_farmerdet_modal').modal('show');
-                    $('#edit_farmerdet_modal').data('form-id', form_id); // Store ID for update
-                }
-            });
-        });
-
-        $(document).on("click", ".ed_pond", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log(form_id);
-
-            $.ajax({
-                url: '/get-pond-details/' + form_id,
-                method: 'GET',
-                success: function(res) {
-                    console.log(res);
-                    $('#p2_pond_id').val(res.id);
-                    $('#p2_owner').val(res.ownership);
-                    $('#p2_patta').val(res.patta);
-                    $('#p2_tarea').val(res.total_area);
-                    $('#p2_irrigated_lands').val(res.irrigated_lands);
-                    $('#p2_revenue').val(res.revenue);
-                    $('#p2_livestock').val(res.livestocks);
-                    $('#p2_crop_season').val(res.crop_season);
-                    $('#p2_well_irrigation').val(res.well_irrigation);
-                    $('#p2_sf').val(res.sf_number);
-                    $('#p2_soil').val(res.soil_type);
-                    $('#p2_land').val(res.land_serve);
-                    $('#p2_field').val(res.field_insp);
-                    $('#p2_site').val(res.site_app);
-                    $('#p2_doi').val(res.date_of_ins);
-                    $('#p2_doa').val(res.date_of_app);
-                    $('#p2_len').val(res.length);
-                    $('#p2_dep').val(res.depth);
-                    $('#p2_breadth').val(res.breadth);
-                    $('#p2_vol').val(res.volume);
-                    $('#p2_pcont').val(res.p_contribution);
-                    $('#p2_fcont').val(res.f_contribution);
-                    $('#p2_total').val(res.total_est);
-
-                    $('#editponddet_modal_2').modal('show');
-                }
-            });
-        });
-
-
-        $(document).on("click", ".ed_plant", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-            console.log("Editing plant form ID:", form_id);
-
-            $.ajax({
-                url: "/get-plant-form", // route to your controller
-                type: "GET",
-                data: {
-                    form_id: form_id
-                },
-                success: function(response) {
-                    if (response.success) {
-                        let d = response.data;
-
-                        $("#pl_plant_id").val(d.id); // primary key
-                        $("#pl_ownership").val(d.ownership);
-                        $("#pl_well_irrigation").val(d.well_irrigation);
-                        $("#pl_area_irrigated").val(d.area_irrigated);
-                        $("#pl_irrigated_lands").val(d.irrigated_lands);
-                        $("#pl_patta").val(d.patta);
-                        $("#pl_total_area").val(d.total_area);
-                        $("#pl_revenue").val(d.revenue);
-                        $("#pl_crop_season").val(d.crop_season);
-                        $("#pl_livestock").val(d.livestocks);
-                        $("#pl_type").val(d.plantaions);
-                        $("#pl_sf_no").val(d.sf_number);
-                        $("#pl_soil_type").val(d.soil_type);
-                        $("#pl_land_benefit").val(d.land_to_benefit);
-                        $("#pl_field_inspection").val(d.field_insp);
-                        $("#pl_site_approval").val(d.site_app);
-                        $("#pl_date_of_inspection").val(d.date_of_ins);
-                        $("#pl_date_of_approval").val(d.date_of_app);
-                        $("#pl_type_of_work").val(d.type_of_work);
-                        $("#pl_area_benefit").val(d.area_benefited_by_proposal);
-                        $("#pl_other_works").val(d.any_other_works);
-                        $("#pl_pradan_contribution").val(d.p_contribution);
-                        $("#pl_farmer_contribution").val(d.f_contribution);
-                        $("#pl_total_amount").val(d.total_est);
-
-                        $("#editplantdet_modal").modal("show");
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Data not found",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                },
-                error: function(err) {
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Error loading data",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            });
-        });
-
-        $(document).on("click", ".ed_land", function(e) {
-            e.preventDefault();
-            var form_id = $(this).val();
-
-            $.ajax({
-                url: "/landform/edit/" + form_id,
-                type: "GET",
-                success: function(res) {
-                    $.each(res, function(key, value) {
-                        $("#" + key).val(value);
-                    });
-                    $("#ed_land_id").val(form_id);
-                    $("#editlanddet_modal").modal("show");
-                }
-            });
-        });
-
-
-
-        $('#editbankDetailForm').on('submit', function(e) {
-            e.preventDefault();
-
-            var formData = {
-                form_id: $('#edit_form_id').val(),
-                holder_name: $('#edit_holder_name').val(),
-                account_number: $('#edit_account_number').val(),
-                bank_name: $('#edit_bank_name').val(),
-                branch: $('#edit_branch').val(),
-                ifsc_code: $('#edit_ifsc').val(),
-                _token: $('meta[name="csrf-token"]').attr('content') // if CSRF is required
-            };
-
-            $.ajax({
-                url: '/update-bank-details',
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                        $('#edit_bankdet_modal').modal('hide');
-                        // Optionally refresh table or data
-                    } else {
-                        alert("Update failed: " + response.message);
-                    }
-                },
-                error: function(xhr) {
-                    alert("An error occurred during update.");
-                }
-            });
-        });
-
-        $('#edit_farmerdet_modal .btn-success').on('click', function() {
-            var form_id = $('#edit_farmerdet_modal').data('form-id');
-
-            $.ajax({
-                url: '/update-farmer-details',
-                method: 'POST',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    form_id: form_id,
-                    farmer_name: $('#input_f_name').val(),
-                    spouse: $('#input_f_spouse').val(),
-                    mobile: $('#input_f_mobile').val(),
-                    gender: $('#input_f_gender').val(),
-                    id_type: $('#input_f_card').val(),
-                    h_members: $('#input_f_member').val(),
-                    id_number: $('#input_f_number').val(),
-                    hamlet: $('#input_f_hamlet').val(),
-                    panchayat: $('#input_f_panchayat').val(),
-                    block: $('#input_f_block').val(),
-                    type_of_households: $('#input_f_household_type').val(),
-                    special_catog: $('#input_f_special_category').val(),
-                    caste: $('#input_f_caste').val(),
-                    hh_occupation: $('#input_f_occupation').val(),
-                    type_of_house: $('#input_f_house_type').val(),
-                    drinking_water: $('#input_f_drinking_water').val(),
-                    potability: $('#input_f_potability').val(),
-                    domestic_water: $('#input_f_domestic_water').val(),
-                    toilet_avail: $('#input_f_toilet_availability').val(),
-                    toilet_cond: $('#input_f_toilet_condition').val(),
-                    house_owner: $('#input_f_house_owner').val(),
-                    household_education: $('#input_f_household_education').val(),
-                    lat: $('#input_f_latitude').val(),
-                    lon: $('#input_f_longitude').val(),
-                    mcode: $('#input_f_mcode').val(),
-                },
-                success: function(response) {
-                    Swal.fire({
-                        title: "Success!",
-                        text: response.message,
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    });
-                    $('#edit_farmerdet_modal').modal('hide');
-                    // Optionally reload table or page
-                }
-            });
-        });
-
-
-        $(document).ready(function() {
-            $('#pondEditForm2').submit(function(e) {
-                e.preventDefault();
-
-                let formData = new FormData(this);
-
-                $.ajax({
-                    url: '/postfunding/pond/update', // Laravel route
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        // Show success message or reload table
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Pond details updated successfully!",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                        $('#editponddet_modal_2').modal('hide');
-                        // Optionally reload table or page
-                        location.reload();
-                    },
-                    error: function(xhr) {
-                        // Show error
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Error updating pond details",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-
-
-        $("#plantEditForm").on("submit", function(e) {
-            e.preventDefault();
-
-            $.ajax({
-                url: "/update-plant-form",
-                method: "POST",
-                data: $(this).serialize(),
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    if (response.success) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Plantation form updated successfully",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                        $("#editplantdet_modal").modal("hide");
-                        location.reload(); // or update table dynamically
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Failed to update",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                },
-                error: function() {
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Error during update",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            });
-        });
-
-
-
-        $("#editlandEditForm").submit(function(e) {
-            e.preventDefault();
-
-            $.ajax({
-                url: "/landform/update",
-                type: "POST",
-                data: $(this).serialize(),
-                success: function(res) {
-                    Swal.fire({
-                        title: "Success!",
-                        text: res.success,
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    });
-                    $("#editlanddet_modal").modal("hide");
-                    location.reload(); // or refresh the table
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Update failed. Please try again",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            });
-        });
-    </script>
-
 
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 

@@ -781,6 +781,10 @@ public function update_user(Request $request)
     return response()->json(['success' => true]);
 }
 
+public function exportExcel(){
+    return view('tl.tlexcel');
+}
+
 
 
 }
