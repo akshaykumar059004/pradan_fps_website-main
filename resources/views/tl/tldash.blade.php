@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
@@ -82,11 +83,11 @@
                         </a>
                         <div class="collapse" id="formsMenu">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('cform1') }}">Land Form</a>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('tform1') }}">Land Form</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('cform2') }}">Pond Form</a>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('tform2') }}">Pond Form</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('cform3') }}">Plant Form</a>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('tform3') }}">Plant Form</a>
                                 </li>
                             </ul>
                         </div>
@@ -107,6 +108,12 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('tlexcel') }}">
+                            <i class="fas fa-file-export menu-icon"></i>
+                            <span class="menu-title">Export Records</span>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>

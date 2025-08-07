@@ -169,6 +169,8 @@ Route::get('/ldash', [tlController::class, 'tlDashboard'])->name('ldash');
 
 Route::get('/tl',[tlController::class,'fetch_appl_tl'])->name('tl');
 
+Route::get('/tlexcel', [tlController::class, 'exportExcel'])->name('tlexcel');
+
 Route::post('/tform_land',[tlController::class,"form_lands"]);
 
 Route::post('/tform_pond',[tlController::class,"pond_form"]);
