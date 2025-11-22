@@ -56,6 +56,9 @@ class LandForm extends Model
 		'irrigated_lands',
 		'patta',
 		'total_area',
+		'taluk',
+		'firka',
+		'livestocks',
 		'revenue',
 		'crop_season',
 		'livestocks',
@@ -74,4 +77,11 @@ class LandForm extends Model
 		'total_est',
 		'area_benefited_postfunding'
 	];
+
+	// In app/Models/LandForm.php
+		public function form()
+		{
+			return $this->belongsTo(Form::class, 'form_id');
+		}
+
 }

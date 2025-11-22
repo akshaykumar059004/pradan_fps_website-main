@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PondForm extends Model
 {
-	protected $table = 'form_pond_details';
+	protected $table = 'farm_pond_details';
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -57,6 +57,8 @@ class PondForm extends Model
 		'total_area',
 		'irrigated_lands',
 		'revenue',
+		'taluk',
+		'firka',
 		'livestocks',
 		'crop_season',
 		'well_irrigation',

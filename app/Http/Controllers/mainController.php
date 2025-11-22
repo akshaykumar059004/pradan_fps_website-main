@@ -682,9 +682,12 @@ $form3 = Form::where('form_type', 'plant')
     
 
     public function fetch_land_det($id){
-        $form = LandForm::where('form_id',$id)->first();
-        if($form){
-            return response()->json(["status"=>200,"data"=>$form]);
+         $form = LandForm::with('form:id,lat,lon')
+        ->where('form_id', $id)
+        ->first();
+
+        if ($form) {
+            return response()->json(["status" => 200, "data" => $form]);
         }
     }
 

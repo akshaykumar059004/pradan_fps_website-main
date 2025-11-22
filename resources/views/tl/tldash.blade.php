@@ -32,15 +32,15 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-                <a class="navbar-brand brand-logo me-5" href="{{route('vol')}}"><img src="{{ asset('assets/images/icons/Pradan-logo-title.png')}}" class="me-2"
+                <a class="navbar-brand brand-logo me-5" href="{{route('ldash')}}"><img src="{{ asset('assets/images/icons/Pradan-logo-title.png')}}" class="me-2"
                         alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="{{route('vol')}}"><img src="{{asset('assets/images/icons/Pradan-logo-icon.png')}}"
+                <a class="navbar-brand brand-logo-mini" href="{{route('ldash')}}"><img src="{{asset('assets/images/icons/Pradan-logo-icon.png')}}"
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
-                </button>
+                </button> -->
 
                 <ul class="navbar-nav navbar-nav-right">
 
@@ -101,12 +101,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('tl1') }}">
                             <i class="icon-columns menu-icon"></i>
                             <span class="menu-title">Applications</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('tlexcel') }}">
@@ -116,6 +116,9 @@
                     </li>
 
                 </ul>
+                 <button class="navbar-toggler minimize-btn" type="button" data-toggle="minimize">
+                    <span class="fa-solid fa-right-to-bracket"></span>
+                </button>
             </nav>
             <!-- partial -->
             <div class="main-panel">
@@ -322,14 +325,7 @@
         </div>
     </div>
 </div>
-                        <!-- <div>
-                            <a class="btn btn-warning d-flex align-items-center w-25" href="{{ route('tl_mem') }}">
-                                <i class="fas fa-users-cog me-2"></i>
-                                <span class="menu-title">Manage Members</span>
-                            </a>
-                        </div> -->
-                </div>
-                <footer class="footer">
+                    <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025. Developed and Maintained By <b>TIH & Developers Unit</b>.
                             All rights reserved.</span>
@@ -338,9 +334,7 @@
                                     class="ti-linkedin ms-2"></a></i></span>
                     </div>
                 </footer>
-            </div>
-        </div>
-    </div>
+                    
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>

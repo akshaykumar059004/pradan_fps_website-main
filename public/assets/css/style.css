@@ -117,6 +117,11 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+
+html, body {
+  height: 100%;
+}
+
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -20909,7 +20914,9 @@ html {
 }
 
 .container-scroller {
-  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 pre {
@@ -20965,9 +20972,10 @@ code {
 
 /* Footer */
 .footer {
+  margin-top: 20%; 
   background: #F5F7FF;
   color: color(dark);
-  padding: 30px 2.45rem;
+  padding: 15px 2.45rem;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
   -webkit-transition: all 0.25s ease;
@@ -23989,6 +23997,8 @@ table.dataTable tbody td.select-checkbox:after {
 
 .main-panel {
   transition: width 0.25s ease, margin 0.25s ease;
+  margin-left: 20px;
+  margin-right: 20px;
   width: calc(100% - 235px);
   min-height: calc(100vh - 60px);
   display: -webkit-flex;
@@ -24005,10 +24015,17 @@ table.dataTable tbody td.select-checkbox:after {
 
 .content-wrapper {
   background: #F5F7FF;
-  padding: 2.375rem 2.375rem;
+  padding: 10px 20px 20px 10px;
   width: 100%;
   -webkit-flex-grow: 1;
+  flex: 1;
   flex-grow: 1;
+  margin-left: 230px; /* adjust based on actual sidebar width */
+  transition: margin 0.3s ease;
+}
+.sidebar-icon-only .content-wrapper,
+.sidebar-minimized .content-wrapper {
+  margin-left: 50px; /* smaller width when shrunk */
 }
 @media (max-width: 767px) {
   .content-wrapper {
@@ -25248,7 +25265,7 @@ table.dataTable tbody td.select-checkbox:after {
     padding-left: 20px;
   }
   .sidebar-icon-only .main-panel {
-    width: calc(100% - 70px);
+    width: calc(100% - 50px);
   }
 }
 
@@ -25694,3 +25711,20 @@ table.dataTable tbody td.select-checkbox:after {
   }
 }
 /*# sourceMappingURL=maps/style.css.map */
+
+#sidebar {
+    display: flex;
+    padding-top: 70px;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0; /* fill full screen height */
+    overflow-y: auto; /* scroll INSIDE sidebar if content exceeds height */
+    z-index: 999; /* keep above page content */
+}
+
+.minimize-btn {
+    margin-top: auto;
+    margin-bottom: 150px; /* adjust spacing if needed */
+}

@@ -218,9 +218,6 @@
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
 
                 <ul class="navbar-nav navbar-nav-right">
 
@@ -282,12 +279,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('tl1') }}">
                             <i class="icon-columns menu-icon"></i>
                             <span class="menu-title">Applications</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('tlexcel') }}">
@@ -297,6 +294,9 @@
                     </li>
 
                 </ul>
+                <button class="navbar-toggler minimize-btn" type="button" data-toggle="minimize">
+                    <span class="fa-solid fa-right-to-bracket"></span>
+                </button>
             </nav>
 
             <!-- partial -->
@@ -458,18 +458,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025.
-                            Developed and Maintained By <b>TIH & Developers Unit</b>.
-                            All rights reserved.</span>
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025.
+                                Developed and Maintained By <b>TIH & Developers Unit</b>.
+                                All rights reserved.</span>
 
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Contact Us <a
-                                href="https://www.linkedin.com/company/professional-assistance-for-development-action/"><i
-                                    class="ti-linkedin ms-2"></a></i></span>
-                    </div>
-                </footer>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Contact Us <a
+                                    href="https://www.linkedin.com/company/professional-assistance-for-development-action/"><i
+                                        class="ti-linkedin ms-2"></a></i></span>
+                        </div>
+                    </footer>
+                </div>
             </div>
         </div>
     </div>

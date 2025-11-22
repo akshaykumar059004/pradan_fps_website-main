@@ -217,10 +217,6 @@
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
-
                 <ul class="navbar-nav navbar-nav-right">
 
                     <li class="nav-item nav-profile dropdown">
@@ -247,7 +243,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route('ldash')}}">
+                        <a class="nav-link" href="{{route('ldash')}}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -281,12 +277,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('tl1') }}">
                             <i class="icon-columns menu-icon"></i>
                             <span class="menu-title">Applications</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('tlexcel') }}">
@@ -296,6 +292,9 @@
                     </li>
                     
                 </ul>
+                <button class="navbar-toggler minimize-btn" type="button" data-toggle="minimize">
+                    <span class="fa-solid fa-right-to-bracket"></span>
+                </button>
             </nav>
 
             <!-- partial -->
@@ -395,7 +394,7 @@
                                                                 </td>
 
                                                                 <td>
-                                                                    @if($f->status == 1 ||$f->status == 2 )
+                                                                    @if($f->status == 1)
                                                                     {{-- Pre-Funding Submitted by Associate --}}
                                                                     <button type="button"
                                                                         class="btn btn-success coor_appr1"
@@ -406,6 +405,23 @@
                                                                         class="btn btn-warning coor_update"
                                                                         value="{{ $f->id }}">
                                                                         Request Change
+                                                                    </button>
+                                                                    <button type="button"
+                                                                        class="btn btn-danger coor_reject"
+                                                                        value="{{ $f->id }}">
+                                                                        Reject
+                                                                    </button>
+                                                                    @elseif($f->status == 2)
+                                                                    {{-- Pre funding change requested by TL --}}
+                                                                    <!-- <button type="button"
+                                                                        class="btn btn-success coor_pf_appr"
+                                                                        value="{{ $f->id }}">
+                                                                        Approve PF
+                                                                    </button>&nbsp;&nbsp; -->
+                                                                    <button type="button"
+                                                                        class="btn btn-warning coor_pf_update"
+                                                                        value="{{ $f->id }}">
+                                                                        Request Edit PF
                                                                     </button>
                                                                     <button type="button"
                                                                         class="btn btn-danger coor_reject"
@@ -825,9 +841,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025.
                             Developed and Maintained By <b>TIH & Developers Unit</b>.
                             All rights reserved.</span>
@@ -835,8 +850,9 @@
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Contact Us <a
                                 href="https://www.linkedin.com/company/professional-assistance-for-development-action/"><i
                                     class="ti-linkedin ms-2"></a></i></span>
-                    </div>
-                </footer>
+                         </div>
+                    </footer>
+                </div>
             </div>
         </div>
     </div>
@@ -1017,7 +1033,7 @@
                             <strong>Land OwnerShip:</strong> <span id="l_ownership"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Well for Irrigation:</strong> <span id="l_well_irrigation"></span>
+                            <strong>SF Number:</strong> <span id="l_sf"></span>
                         </div>
                     </div>
 
@@ -1027,116 +1043,116 @@
                             <strong>Patta Number:</strong> <span id="l_patta"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Total Area:</strong> <span id="l_tarea"></span>
+                            <strong>Livestock at home:</strong> <span id="l_livestocks"></span>
                         </div>
                     </div>
 
                     <!-- Row 3 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Id_Ca:</strong> <span id="f_card"></span>
+                            <strong>Well for Irrigation:</strong> <span id="l_well_irrigation"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Members:</strong> <span id="f_member"></span>
+                            <strong>No of Wells:</strong> <span id="l_well_count"></span>
                         </div>
                     </div>
 
                     <!-- Row 4 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Id_Number:</strong> <span id="f_number"></span>
+                            <strong>Irrigated lands:</strong> <span id="l_irrigated_lands"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Hamlet:</strong> <span id="f_hamlet"></span>
+                            <strong>Total Area:</strong> <span id="l_tarea"></span>
                         </div>
                     </div>
 
                     <!-- Row 5 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Panchayat:</strong> <span id="f_panchayat"></span>
+                            <strong>Crop Season:</strong> <span id="l_crop_season"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Block:</strong> <span id="f_block"></span>
+                            <strong>Soil Type:</strong> <span id="l_soil_type"></span>
                         </div>
                     </div>
 
                     <!-- Row 6 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Type of Household:</strong> <span id="f_household_type"></span>
+                            <strong>Taluk:</strong> <span id="l_taluk"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Special Category:</strong> <span id="f_special_category"></span>
+                            <strong>Revenue Village:</strong> <span id="l_revenue_village"></span>
                         </div>
                     </div>
 
                     <!-- Row 7 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Caste:</strong> <span id="f_caste"></span>
+                            <strong>Firka:</strong> <span id="l_firka"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Occupation:</strong> <span id="f_occupation"></span>
+                            <strong>Type of work:</strong> <span id="l_type"></span>
                         </div>
                     </div>
 
                     <!-- Row 8 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Type of House:</strong> <span id="f_house_type"></span>
+                            <strong>Latitude:</strong> <span id="l_latitude"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Drinking Water Source:</strong> <span id="f_drinking_water"></span>
+                            <strong>Longitude:</strong> <span id="l_longitude"></span>
                         </div>
                     </div>
 
                     <!-- Row 9 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Potability:</strong> <span id="f_potability"></span>
+                            <strong>Type of work:</strong> <span id="l_type"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Domestic Water Source:</strong> <span id="f_domestic_water"></span>
+                            <strong>Any other works:</strong> <span id="l_oth"></span>
                         </div>
                     </div>
 
                     <!-- Row 10 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Toilet Availability:</strong> <span id="f_toilet_availability"></span>
+                            <strong>Pradan Contribution:</strong> <span id="l_pradan"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Toilet Condition:</strong> <span id="f_toilet_condition"></span>
+                            <strong>Farmer Contribution:</strong> <span id="l_farmer"></span>
                         </div>
                     </div>
 
                     <!-- Row 11 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>House Owner:</strong> <span id="f_house_owner"></span>
+                            <strong>Area Benefitted:</strong> <span id="l_area"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Household Education:</strong> <span id="f_household_education"></span>
+                            <strong>Total Estimate:</strong> <span id="l_total"></span>
                         </div>
                     </div>
 
                     <!-- Row 12 -->
                     <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
-                            <strong>Latitude:</strong> <span id="f_latitude"></span>
+                            <strong>Date of Inspection:</strong> <span id="l_doi"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <strong>Longitude:</strong> <span id="f_longitude"></span>
+                            <strong>Field Inspection done by:</strong> <span id="l_field"></span>
                         </div>
                     </div>
 
                     <!-- Row 13 -->
-                    <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
+                    <!-- <div class="row border p-2 mb-3" style="border-radius: 8px; border: 1px solid #ddd; margin:2px;">
                         <div class="col-md-6 mb-3">
                             <strong>MCode:</strong> <span id="f_mcode"></span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer" style="border-top: 2px solid #dee2e6;">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -1742,10 +1758,17 @@
                         $("#l_area_irrigated").text(response.data.area_irrigated); // Newly added
                         $("#l_irrigated_lands").text(response.data.irrigated_lands); // Newly added
                         $("#l_patta").text(response.data.patta);
+                        $("#l_livestocks").text(response.data.livestocks);
                         $("#l_tarea").text(response.data.total_area);
-                        $("#l_revenue").text(response.data.revenue);
+                        $("#l_revenue_village").text(response.data.revenue);
                         $("#l_sf").text(response.data.sf_number);
-                        $("#l_soil").text(response.data.soil_type);
+                        //console.log("Land Modal"+typeof(response.data.form.lat));
+                        $("#l_latitude").text(response.data.form.lat);
+                        $("#l_longitude").text(response.data.form.lon);
+                        $("#l_taluk").text(response.data.taluk);
+                        $("#l_firka").text(response.data.firka);
+                        $("#l_soil_type").text(response.data.soil_type);
+                        $("#l_crop_season").text(response.data.crop_season);
                         $("#l_benefit").text(response.data.land_to_benefit);
                         $("#l_field").text(response.data.field_insp);
                         $("#l_site").text(response.data.site_app);
@@ -1800,7 +1823,7 @@
                 type: "GET",
                 url: `/fetch_pond_det/${form_id}`,
                 success: function(response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status == 200) {
                         $("#p_owner").text(response.data.ownership);
                         $("#p_patta").text(response.data.patta);
@@ -1841,7 +1864,7 @@
         $(document).on("click", "#plant_detail", function(e) {
             e.preventDefault();
             var form_id = $(this).val();
-            console.log("deiiii")
+            //console.log("deiiii")
             $.ajax({
                 type: "GET",
                 url: `/fetch_plant_det/${form_id}`,
